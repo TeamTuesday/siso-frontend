@@ -52,8 +52,7 @@ export default {
 							targets: { esmodules: true, },
 						}],
 					],
-				},
-				plugins: ["@babel/plugin-proposal-optional-chaining"],
+				}
 			})
 		}),
 		// we'll extract any component CSS out into
