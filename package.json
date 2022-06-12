@@ -5,7 +5,7 @@
   "scripts": {
     "build": "npm run check && rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public --no-clear",
+    "start": "sirv public --single --no-clear",
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
@@ -22,7 +22,8 @@
     "@rollup/plugin-typescript": "^8.0.0",
     "typescript": "^4.0.0",
     "tslib": "^2.0.0",
-    "@tsconfig/svelte": "^2.0.0"
+    "@tsconfig/svelte": "^2.0.0",
+    "tinro": "^0.6.12"
   },
   "dependencies": {
     "sirv-cli": "^2.0.0"
