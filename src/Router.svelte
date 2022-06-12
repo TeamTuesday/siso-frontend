@@ -1,9 +1,9 @@
 <script lang="ts">
     import {Route} from 'tinro';
   
-    import List from './pages/List.svelte';
-    import Login from './pages/Login.svelte';
-    import Register from './pages/Register.svelte';
+    import List from '@/pages/List.svelte';
+    import Login from '@/pages/Login.svelte';
+    import Register from '@/pages/Register.svelte';
   </script>
   
   <Route path="/" redirect="/list" />
