@@ -6,6 +6,7 @@ import { terser } from 'rollup-plugin-terser';
 import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
 import css from 'rollup-plugin-css-only';
+import scss from 'rollup-plugin-scss';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -41,7 +42,13 @@ export default {
 	},
 	plugins: [
 		svelte({
-			preprocess: sveltePreprocess({ sourceMap: !production }),
+			preprocess: sveltePreprocess({ 
+				sourceMap: !production,
+                scss: {
+                    // 전역 scss 파일 등록, scss가 사용되는 곳에만 적용
+                    prependData: ['@import "./src/variables.scss";'],
+                }, 
+			}),
 			compilerOptions: {
 				// enable run-time checks when not in production
 				dev: !production
@@ -64,6 +71,9 @@ export default {
 		typescript({
 			sourceMap: !production,
 			inlineSources: !production
+		}),
+		scss({
+		  output: 'public/build/assets.css'
 		}),
 
 		// In dev mode, call `npm run start` once
