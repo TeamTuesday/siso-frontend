@@ -11,6 +11,7 @@ import path from 'path';
 import scss from 'rollup-plugin-scss';
 import autoprefixer from 'autoprefixer';
 import postcss from 'postcss';
+import childProcess from 'child_process';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -24,7 +25,7 @@ function serve() {
 	return {
 		writeBundle() {
 			if (server) return;
-			server = require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
+			server = childProcess.spawn('npm', ['run', 'start', '--', '--dev'], {
 				stdio: ['ignore', 'inherit', 'inherit'],
 				shell: true
 			});

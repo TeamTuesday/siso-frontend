@@ -1,4 +1,4 @@
-const sveltePreprocess = require('svelte-preprocess');
+import sveltePreprocess from 'svelte-preprocess';
 
 const preprocessOptions = {
     defaults: {
