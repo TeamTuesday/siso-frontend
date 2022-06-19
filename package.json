@@ -3,24 +3,52 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "rollup -c",
+    "build": "npm run check && rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public --no-clear"
+    "start": "sirv public --single --no-clear",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "lint": "eslint . --ext .js,.ts,.svelte --fix",
+    "format": "prettier --write '{public,src}/**/*.{css,html,js,ts,svelte}'",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@babel/core": "^7.18.2",
     "@babel/preset-env": "^7.18.2",
+    "@rollup/plugin-alias": "^3.1.9",
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
+    "@rollup/plugin-typescript": "^8.0.0",
+    "@tsconfig/svelte": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.28.0",
+    "@typescript-eslint/parser": "^5.28.0",
+    "autoprefixer": "^10.4.7",
+    "eslint": "^8.18.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-svelte3": "^4.0.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.2",
+    "postcss": "^8.4.14",
+    "prettier": "^2.7.1",
+    "prettier-plugin-svelte": "^2.7.0",
     "rollup": "^2.3.4",
     "rollup-plugin-css-only": "^3.1.0",
     "rollup-plugin-livereload": "^2.0.0",
+    "rollup-plugin-scss": "^3.0.0",
     "rollup-plugin-svelte": "^7.0.0",
     "rollup-plugin-terser": "^7.0.0",
+    "sass": "^1.52.3",
     "svelte": "^3.0.0",
-    "svelte-preprocess": "^4.10.7"
+    "svelte-check": "^2.0.0",
+    "svelte-preprocess": "^4.0.0",
+    "tinro": "^0.6.12",
+    "tslib": "^2.0.0",
+    "typescript": "^4.7.4"
   },
   "dependencies": {
     "sirv-cli": "^2.0.0"
+  },
+  "lint-staged": {
+    "*.{js,ts,svelte}": "eslint --cache --fix",
+    "*.{css,html,js,ts,svelte}": "prettier --write"
   }
 }
