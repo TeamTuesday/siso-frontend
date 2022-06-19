@@ -79,7 +79,6 @@ export default {
 			sourceMap: !production,
 			inlineSources: !production
 		}),
-		alias({
 			entries: [
 			  { find: '@', replacement: path.resolve(__dirname, 'src') }
 			]
