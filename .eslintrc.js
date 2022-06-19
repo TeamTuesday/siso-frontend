@@ -1,4 +1,5 @@
 module.exports = {
+    parser: "@typescript-eslint/parser",
     parserOptions: {
       ecmaVersion: 2019,
       sourceType: 'module'
@@ -9,7 +10,8 @@ module.exports = {
       node: true
     },
     extends: [
-      'eslint:recommended'
+      'eslint:recommended',
+      "plugin:@typescript-eslint/recommended"
     ],
     plugins: [
       'svelte3'

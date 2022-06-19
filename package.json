@@ -7,8 +7,9 @@
     "dev": "rollup -c -w",
     "start": "sirv public --single --no-clear",
     "check": "svelte-check --tsconfig ./tsconfig.json",
-    "lint": "eslint . --ext .js,.svelte --fix",
-    "format": "prettier --write '{public,src}/**/*.{css,html,js,svelte}'"
+    "lint": "eslint . --ext .js,.ts,.svelte --fix",
+    "format": "prettier --write '{public,src}/**/*.{css,html,js,ts,svelte}'",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^3.1.9",
@@ -16,10 +17,14 @@
     "@rollup/plugin-node-resolve": "^11.0.0",
     "@rollup/plugin-typescript": "^8.0.0",
     "@tsconfig/svelte": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.28.0",
+    "@typescript-eslint/parser": "^5.28.0",
     "autoprefixer": "^10.4.7",
     "eslint": "^8.18.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-svelte3": "^4.0.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.2",
     "postcss": "^8.4.14",
     "prettier": "^2.7.1",
     "prettier-plugin-svelte": "^2.7.0",
@@ -35,9 +40,13 @@
     "svelte-preprocess": "^4.0.0",
     "tinro": "^0.6.12",
     "tslib": "^2.0.0",
-    "typescript": "^4.0.0"
+    "typescript": "^4.7.4"
   },
   "dependencies": {
     "sirv-cli": "^2.0.0"
+  },
+  "lint-staged": {
+    "*.{js,ts,svelte}": "eslint --cache --fix",
+    "*.{css,html,js,ts,svelte}": "prettier --write"
   }
 }

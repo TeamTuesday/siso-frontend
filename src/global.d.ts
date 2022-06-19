@@ -1,10 +1,10 @@
 /// <reference types="svelte" />
 
-declare module "*.svelte" {
+declare module '*.svelte' {
   interface ComponentOptions {
     target: HTMLElement;
     anchor?: HTMLElement | null;
-    props?: {};
+    props?: any;
     hydrate?: boolean;
     intro?: boolean;
   }
@@ -12,14 +12,14 @@ declare module "*.svelte" {
   interface Component {
     new (options: ComponentOptions): any;
     // client-side methods
-    $set(props: {}): void;
+    $set(props: any): void;
     $on(event: string, callback: (event: CustomEvent) => void): void;
     $destroy(): void;
 
     // server-side methods
-    render(props?: {}): {
+    render(props?: any): {
       html: string;
-      css: { code: string; map: string | null };
+      css: {code: string; map: string | null};
       head?: string;
     };
   }
