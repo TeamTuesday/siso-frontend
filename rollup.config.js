@@ -53,7 +53,7 @@ export default {
                     prependData: ['@import "./src/variables.scss";'],
                 }, 
 				postcss: {
-				  plugins: [autoprefixer()]
+					plugins: [autoprefixer()]
 				}
 			}),
 			compilerOptions: {
@@ -79,18 +79,19 @@ export default {
 			sourceMap: !production,
 			inlineSources: !production
 		}),
+		alias({
 			entries: [
-			  { find: '@', replacement: path.resolve(__dirname, 'src') }
+				{ find: '@', replacement: path.resolve(__dirname, 'src') }
 			]
-    	}),
+		}),
 		scss({
-		  output: 'public/build/assets.css',
-		  processor: css => postcss([autoprefixer])
-		  .process(css, {
+			output: 'public/build/assets.css',
+			processor: css => postcss([autoprefixer])
+			.process(css, {
 			from: undefined
-		  })
-		  .then(assets => assets.css)
-	  	}),
+		})
+		.then(assets => assets.css)
+		}),
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
