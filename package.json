@@ -7,7 +7,8 @@
     "dev": "rollup -c -w",
     "start": "sirv public --single --no-clear",
     "check": "svelte-check --tsconfig ./tsconfig.json",
-    "lint": "eslint . --ext .js,.svelte --fix"
+    "lint": "eslint . --ext .js,.svelte --fix",
+    "format": "prettier --write '{public,src}/**/*.{css,html,js,svelte}'"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^3.1.9",
@@ -15,11 +16,13 @@
     "@rollup/plugin-node-resolve": "^11.0.0",
     "@rollup/plugin-typescript": "^8.0.0",
     "@tsconfig/svelte": "^2.0.0",
+    "autoprefixer": "^10.4.7",
     "eslint": "^8.18.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-svelte3": "^4.0.0",
-    "autoprefixer": "^10.4.7",
     "postcss": "^8.4.14",
+    "prettier": "^2.7.1",
+    "prettier-plugin-svelte": "^2.7.0",
     "rollup": "^2.3.4",
     "rollup-plugin-css-only": "^3.1.0",
     "rollup-plugin-livereload": "^2.0.0",
