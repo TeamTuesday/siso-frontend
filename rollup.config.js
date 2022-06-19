@@ -75,12 +75,10 @@ export default {
 			inlineSources: !production
 		}),
 		alias({
-			entries: [
-			  { find: '@', replacement: path.resolve(__dirname, 'src') }
-			]
-    }),
+			entries: [{ find: '@', replacement: path.resolve(__dirname, 'src') }]
+		}),
 		scss({
-		  output: 'public/build/assets.css'
+			output: 'public/build/assets.css'
 		}),
 
 		// In dev mode, call `npm run start` once
