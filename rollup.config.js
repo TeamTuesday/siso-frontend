@@ -47,14 +47,23 @@ export default {
 	},
 	plugins: [
 		svelte({
-			preprocess: sveltePreprocess({ 
+			preprocess: sveltePreprocess({
 				sourceMap: !production,
                 scss: {
                     // 전역 scss 파일 등록, scss가 사용되는 곳에만 적용
                     prependData: ['@import "./src/variables.scss";'],
-                }, 
+                },
 				postcss: {
 					plugins: [autoprefixer()]
+				},
+				babel: {
+					presets: [
+						["@babel/preset-env", {
+							loose: true,
+							modules: false,
+							targets: { esmodules: true, },
+						}],
+					],
 				}
 			}),
 			compilerOptions: {
