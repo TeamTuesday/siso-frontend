@@ -9,6 +9,8 @@ import css from 'rollup-plugin-css-only';
 import alias from '@rollup/plugin-alias';
 import path from 'path';
 import scss from 'rollup-plugin-scss';
+import autoprefixer from 'autoprefixer';
+import postcss from 'postcss';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -50,6 +52,9 @@ export default {
                     // 전역 scss 파일 등록, scss가 사용되는 곳에만 적용
                     prependData: ['@import "./src/variables.scss";'],
                 }, 
+				postcss: {
+				  plugins: [autoprefixer()]
+				}
 			}),
 			compilerOptions: {
 				// enable run-time checks when not in production
@@ -74,12 +79,18 @@ export default {
 			sourceMap: !production,
 			inlineSources: !production
 		}),
-		alias({
-			entries: [{ find: '@', replacement: path.resolve(__dirname, 'src') }]
-		}),
+			entries: [
+			  { find: '@', replacement: path.resolve(__dirname, 'src') }
+			]
+    	}),
 		scss({
-			output: 'public/build/assets.css'
-		}),
+		  output: 'public/build/assets.css',
+		  processor: css => postcss([autoprefixer])
+		  .process(css, {
+			from: undefined
+		  })
+		  .then(assets => assets.css)
+	  	}),
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
