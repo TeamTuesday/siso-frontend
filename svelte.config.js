@@ -8,9 +8,6 @@ const preprocessOptions = {
     scss: {
         prependData: `@import 'src/variables.scss';`
     },
-    postcss: {
-        // plugins: [require('autoprefixer')()]
-    }
 };
 
 module.exports = {

@@ -10,6 +10,7 @@ import alias from '@rollup/plugin-alias';
 import path from 'path';
 import scss from 'rollup-plugin-scss';
 import autoprefixer from 'autoprefixer';
+import postcss from 'postcss';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -86,8 +87,10 @@ export default {
 		scss({
 		  output: 'public/build/assets.css',
 		  processor: css => postcss([autoprefixer])
-		  .process(css)
-		  .then(result => result.css)
+		  .process(css, {
+			from: undefined
+		  })
+		  .then(assets => assets.css)
 	  	}),
 
 		// In dev mode, call `npm run start` once
