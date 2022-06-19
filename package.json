@@ -8,7 +8,8 @@
     "start": "sirv public --single --no-clear",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "lint": "eslint . --ext .js,.ts,.svelte --fix",
-    "format": "prettier --write '{public,src}/**/*.{css,html,js,ts,svelte}'"
+    "format": "prettier --write '{public,src}/**/*.{css,html,js,ts,svelte}'",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^3.1.9",
@@ -22,6 +23,8 @@
     "eslint": "^8.18.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-svelte3": "^4.0.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.2",
     "postcss": "^8.4.14",
     "prettier": "^2.7.1",
     "prettier-plugin-svelte": "^2.7.0",
@@ -41,5 +44,9 @@
   },
   "dependencies": {
     "sirv-cli": "^2.0.0"
+  },
+  "lint-staged": {
+    "*.{js,ts,svelte}": "eslint --cache --fix",
+    "*.{css,html,js,ts,svelte}": "prettier --write"
   }
 }
