@@ -25,5 +25,5 @@ declare module '*.svelte' {
   }
 
   const component: Component;
-  export default component;
+  export {SvelteComponent as default};
 }
