@@ -16,6 +16,7 @@
     "outDir": "./built",
     "moduleResolution": "Node",
     "baseUrl": "./",
-    "paths": { "@/*": ["src/*"] }
+    "paths": {"@/*": ["src/*"]},
+    "types": ["node", "svelte", "jest"]
   }
 }
