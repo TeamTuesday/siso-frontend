@@ -50,6 +50,5 @@
   "lint-staged": {
     "*.{js,ts,svelte}": "eslint --cache --fix",
     "*.{css,html,js,ts,svelte}": "prettier --write"
-  },
-  "type": "module"
+  }
 }
