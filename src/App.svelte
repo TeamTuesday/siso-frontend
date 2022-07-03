@@ -5,3 +5,9 @@
 <main>
   <Router />
 </main>
+
+<style lang="scss">
+  main {
+    height: 100%;
+  }
+</style>
