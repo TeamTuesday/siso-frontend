@@ -7,7 +7,7 @@ build
 # don't lint nyc coverage output
 coverage
 
-.eslintrc.js
+.eslintrc.cjs
 
 .babel.config.js
 
