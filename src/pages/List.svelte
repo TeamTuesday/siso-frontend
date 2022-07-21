@@ -1,21 +1,51 @@
 <script lang="ts">
-  import Vote from '@/components/Vote.svelte';
-
-  const example: Module.Ivote = {
-    id: 1,
-    title: '둘 중에 더 가기 무서운 여행은?',
-    created: new Date(2022, 6, 25),
-    updated: new Date(2022, 6, 25),
-    deleted: null,
-    agree_description: '김정은과 미국 여행',
-    opposite_description: '트럼프와 북한 여행',
-    vote_agree_count: 1,
-    vote_opposite_count: 2,
-    vote_count: 3
-  };
+  $: votes = fetch('http://13.124.104.234:8080/vote-subjects')
+    .then(res => res.json())
+    .then((data: {voteSubjects: Module.Ivote[]}) => data.voteSubjects);
 </script>
 
-<Vote vote={example} />
+<div class="list-component">
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>투표 주제</th>
+          <th>링크</th>
+        </tr>
+      </thead>
+      <tbody>
+        {#await votes then votes}
+          {#each votes as vote}
+            <tr>
+              <td>{vote.title}</td>
+              <td>
+                <a href="/vote/{vote.id}">투표하러 가기</a>
+              </td>
+            </tr>
+          {/each}
+        {/await}
+      </tbody>
+    </table>
+  </div>
+</div>
 
-<style lang="scss">
+<style>
+  .list-component {
+    height: 100%;
+  }
+  .table-wrapper {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  table {
+    width: 300px;
+  }
+  th,
+  td {
+    text-align: center;
+    white-space: nowrap;
+  }
 </style>

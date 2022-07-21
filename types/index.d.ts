@@ -1,15 +1,11 @@
 declare namespace Module {
   interface Ivote {
-    id: number;
+    id: string;
     title: string;
-    created: Date;
-    updated: Date;
-    deleted: Date | null;
-    agree_description: string;
-    opposite_description: string;
-    vote_agree_count: number;
-    vote_opposite_count: number;
-    vote_count: number;
+    agreeDescription: string;
+    oppositeDescription: string;
+    voteAgreeCount: number;
+    voteOppositeCount: number;
   }
 }
 

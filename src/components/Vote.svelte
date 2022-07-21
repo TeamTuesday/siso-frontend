@@ -1,44 +1,57 @@
 <script lang="ts">
-  export let vote: Module.Ivote;
+  import {router} from 'tinro';
+  const params = router.params();
+
+  const id = params.id;
+  $: vote = fetch(`http://13.124.104.234:8080/vote-subjects/${id}`)
+    .then(res => res.json())
+    .then((data: {voteSubject: Module.Ivote}) => data.voteSubject);
 </script>
 
 <div class="vote">
   <div class="vote-header">
-    <button class="vote-header-button back">
+    <button
+      class="vote-header-button back"
+      on:click={() => {
+        history.back();
+      }}
+    >
       <img src="/images/icon/icon_back.svg" alt="backButton" />
     </button>
     <button class="vote-header-button menu">
       <img src="/images/icon/icon_menu.svg" alt="menuButton" />
     </button>
   </div>
-  <div class="vote-content">
-    <span class="vote-content-tag">라이프</span>
-    <h3 class="vote-content-title">{vote?.title}</h3>
-    <div class="vote-content-side agree">{vote?.agree_description}</div>
-    <div class="vote-content-side opposite">{vote?.opposite_description}</div>
-  </div>
-  <div class="vote-info">
-    <div class="vote-info-writer">
-      <span class="vote-info-writer-image">
-        <img src="/images/sample_user.svg" alt="sampleUser" />
-      </span>
-      <p class="vote-info-writer-nickname">UserName</p>
+  {#await vote then vote}
+    <div class="vote-content">
+      <span class="vote-content-tag">라이프</span>
+      <h3 class="vote-content-title">{vote.title}</h3>
+      <div class="vote-content-side agree">{vote.agreeDescription}</div>
+      <div class="vote-content-side opposite">{vote.oppositeDescription}</div>
     </div>
-    <div class="vote-info-count">
-      <button class="vote-info-count-button vote-count">
-        <img src="/images/icon/icon_vote_count.svg" alt="voteCount" />
-        {vote?.vote_count}
-      </button>
-      <button class="vote-info-count-button like-count">
-        <img src="/images/icon/icon_like_count.svg" alt="likeCount" />
-        nnn
-      </button>
-      <button class="vote-info-count-button comment-count">
-        <img src="/images/icon/icon_comment_count.svg" alt="commentCount" />
-        mmm
-      </button>
+    <div class="vote-info">
+      <div class="vote-info-writer">
+        <span class="vote-info-writer-image">
+          <img src="/images/sample_user.svg" alt="sampleUser" />
+        </span>
+        <p class="vote-info-writer-nickname">UserName</p>
+      </div>
+      <div class="vote-info-count">
+        <button class="vote-info-count-button vote-count">
+          <img src="/images/icon/icon_vote_count.svg" alt="voteCount" />
+          {vote.voteAgreeCount}
+        </button>
+        <button class="vote-info-count-button like-count">
+          <img src="/images/icon/icon_like_count.svg" alt="likeCount" />
+          nnn
+        </button>
+        <button class="vote-info-count-button comment-count">
+          <img src="/images/icon/icon_comment_count.svg" alt="commentCount" />
+          mmm
+        </button>
+      </div>
     </div>
-  </div>
+  {/await}
   <div class="nav">
     <button class="nav-home">
       <img src="/images/icon/icon_home.svg" alt="home" />
@@ -101,7 +114,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        box-shadow: 0px 0px 20px 4px rgba(0, 0, 0, 0.06);
+        box-shadow: 0 0 20px 4px rgba(0, 0, 0, 0.06);
         border-radius: 15px;
         font-size: 20px;
         font-weight: 700;
