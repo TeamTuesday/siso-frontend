@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Vote from '@/components/Vote.svelte';
+  import Vote from '@/components/Vote/Vote.svelte';
 
   const example: Module.Ivote = {
     id: 1,
