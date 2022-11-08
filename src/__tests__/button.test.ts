@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import {render, fireEvent} from '@testing-library/svelte';
 
-import Button from '../components/Button.svelte';
+import Button from '../components/Common/Button.svelte';
 
 describe('button render', () => {
   test('should render', () => {

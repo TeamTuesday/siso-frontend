@@ -1,7 +1,10 @@
 <script lang="ts">
-  $: votes = fetch('http://13.124.104.234:8080/vote-subjects')
-    .then(res => res.json())
-    .then((data: {voteSubjects: Module.Ivote[]}) => data.voteSubjects);
+  import {onMount} from 'svelte';
+  import {voteSubjects} from '@/store';
+
+  onMount(async () => {
+    await voteSubjects.fetchVoteSubjects();
+  });
 </script>
 
 <div class="list-component">
@@ -14,16 +17,14 @@
         </tr>
       </thead>
       <tbody>
-        {#await votes then votes}
-          {#each votes as vote}
-            <tr>
-              <td>{vote.title}</td>
-              <td>
-                <a href="/vote/{vote.id}">투표하러 가기</a>
-              </td>
-            </tr>
-          {/each}
-        {/await}
+        {#each $voteSubjects.voteSubjects as vote}
+          <tr>
+            <td>{vote.title}</td>
+            <td>
+              <a href="/vote/{vote.id}">투표하러 가기</a>
+            </td>
+          </tr>
+        {/each}
       </tbody>
     </table>
   </div>
