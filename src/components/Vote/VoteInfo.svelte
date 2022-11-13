@@ -3,33 +3,34 @@
 </script>
 
 <div class="vote-info-container">
-  <div class="vote-info-writer">
-    <Button src="/images/sample_user.svg" alt="sampleUser" />
-    <p class="vote-info-writer-nickname">UserName</p>
-  </div>
   <div class="vote-info-count">
-    <Button src="/images/icon/icon_vote_count.svg" alt="voteCount" text="ooo" />
-    <Button src="/images/icon/icon_like_count.svg" alt="likeCount" text="mmm" />
     <Button
-      src="/images/icon/icon_comment_count.svg"
+      src="/images/icon/icn_people.svg"
+      alt="voteCount"
+      text="9M"
+      class="size-lg img-sm"
+    />
+    <Button
+      src="/images/icon/icn_comment_line.svg"
       alt="commentCount"
-      text="nnn"
+      text="999"
+      class="size-lg img-sm"
+    />
+    <Button
+      src="/images/icon/icn_heart_line.svg"
+      alt="likeCount"
+      text="9.9K"
+      class="size-lg img-sm"
     />
   </div>
 </div>
 
 <style lang="scss">
   .vote-info-container {
+    width: 100%;
     display: flex;
-    justify-content: space-between;
-    padding: 0 18px 29px;
-  }
-  .vote-info-writer {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 14px;
-    color: #555555;
+    justify-content: flex-end;
+    margin-bottom: 25px;
   }
   .vote-info-count {
     display: flex;

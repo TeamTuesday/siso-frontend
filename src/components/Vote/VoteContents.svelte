@@ -8,8 +8,8 @@
 <div class="vote-contents-container">
   <span class="vote-tag">라이프</span>
   <h3 class="vote-title">{title}</h3>
-  <VoteButton description={agree_description} />
-  <VoteButton description={opposite_description} />
+  <VoteButton description={agree_description} class="vote-button" />
+  <VoteButton description={opposite_description} class="vote-button last" />
 </div>
 
 <style lang="scss">
@@ -19,30 +19,28 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 38px 16px;
+    padding-top: 16px;
+    padding-bottom: 8px;
   }
   .vote-tag {
     width: max-content;
-    padding: 0 18px;
+    padding: 2px 12px;
     height: 22px;
     text-align: center;
     border-radius: 20px;
     border: 1px solid rgba(85, 85, 85, 0.3);
+    background: rgba(255, 255, 255, 0.3);
     font-size: 12px;
-    line-height: 22px;
-    color: #555555;
+    line-height: 18px;
+    color: $White;
     margin-bottom: 6px;
   }
   .vote-title {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 32px;
-    font-weight: 500;
-    line-height: 43px;
-    color: $Black;
-    word-break: keep-all;
+    font-size: 24px;
+    line-height: 32px;
+    color: $White;
     text-align: center;
-    margin-bottom: 38px;
+    margin-bottom: 17px;
+    width: 320px;
   }
 </style>
