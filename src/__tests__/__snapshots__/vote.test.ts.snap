@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Vote should match snapshot 1`] = `
+<body>
+  <div>
+    <div
+      class="vote-info-container svelte-1jwiw3m"
+    >
+      <div
+        class="vote-info-writer svelte-1jwiw3m"
+      >
+        <button
+          class="button svelte-1bc6ctt"
+        >
+          <img
+            alt="sampleUser"
+            src="/images/sample_user.svg"
+          />
+           
+          
+        </button>
+         
+        <p
+          class="vote-info-writer-nickname"
+        >
+          UserName
+        </p>
+      </div>
+       
+      <div
+        class="vote-info-count svelte-1jwiw3m"
+      >
+        <button
+          class="button svelte-1bc6ctt"
+        >
+          <img
+            alt="voteCount"
+            src="/images/icon/icon_vote_count.svg"
+          />
+           
+          ooo
+        </button>
+         
+        <button
+          class="button svelte-1bc6ctt"
+        >
+          <img
+            alt="likeCount"
+            src="/images/icon/icon_like_count.svg"
+          />
+           
+          mmm
+        </button>
+         
+        <button
+          class="button svelte-1bc6ctt"
+        >
+          <img
+            alt="commentCount"
+            src="/images/icon/icon_comment_count.svg"
+          />
+           
+          nnn
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+`;

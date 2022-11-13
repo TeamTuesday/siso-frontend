@@ -1,20 +1,19 @@
 import '@testing-library/jest-dom';
-import {render, fireEvent} from '@testing-library/svelte';
+import {render} from '@testing-library/svelte';
 
-import Button from '../components/Common/Button.svelte';
+import Button from '@/components/Common/Button.svelte';
 
-describe('button render', () => {
-  test('should render', () => {
-    const {getByText} = render(Button);
-    expect(getByText('Test button')).toBeInTheDocument();
+describe('Button', () => {
+  const src = '/';
+  const alt = 'alt';
+  const text = 'icon button';
+  test('should match snapshot', () => {
+    const {container} = render(Button, {props: {src, alt, text}});
+    expect(container).toMatchSnapshot();
   });
 
-  test('changes button text on click', async () => {
-    const {getByText} = render(Button);
-    const button = getByText('Button');
-
-    await fireEvent.click(button);
-
-    expect(button).toHaveTextContent('Button Clicked');
+  test('should have props', () => {
+    const {getByText} = render(Button, {props: {src, alt, text}});
+    expect(getByText(text)).toBeInTheDocument();
   });
 });

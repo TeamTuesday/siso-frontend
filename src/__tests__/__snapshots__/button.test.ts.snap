@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button should match snapshot 1`] = `
+<body>
+  <div>
+    <button
+      class="button svelte-1bc6ctt"
+    >
+      <img
+        alt="alt"
+        src="/"
+      />
+       
+      icon button
+    </button>
+  </div>
+</body>
+`;
