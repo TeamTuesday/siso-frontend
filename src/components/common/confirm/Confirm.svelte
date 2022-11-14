@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Button_cancel from '@/components/common/button/ButtonCancel.svelte';
-  import Button_ok from '@/components/common/button/ButtonOk.svelte';
+  import ButtonCancel from '@/components/common/button/ButtonCancel.svelte';
+  import ButtonOk from '@/components/common/button/ButtonOk.svelte';
 
   import {createEventDispatcher, onDestroy, onMount} from 'svelte';
   const dispatch = createEventDispatcher();
@@ -34,7 +34,7 @@
 >
   <p class="font-medium leading-[22px] text-center">{text}</p>
   <div class="w-full mt-[30px] mr-[30px] flex gap-x-4">
-    <Button_cancel class="flex-1" on:click={cancel} />
-    <Button_ok class="flex-1" on:click={confirm} bind:ref={refOk} />
+    <ButtonCancel class="flex-1" on:click={cancel} />
+    <ButtonOk class="flex-1" on:click={confirm} bind:ref={refOk} />
   </div>
 </div>

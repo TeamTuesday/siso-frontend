@@ -1,7 +1,7 @@
 <script lang="ts">
   import Confirm from '@/components/common/confirm/Confirm.svelte';
   import Modal from '@/components/modal/Modal.svelte';
-  import Button_ok from '@/components/common/button/ButtonOk.svelte';
+  import ButtonOk from '@/components/common/button/ButtonOk.svelte';
 
   const showModal = () => {
     const modal = new Modal({
@@ -28,4 +28,4 @@
 </script>
 
 <div>HOME</div>
-<Button_ok on:click={showModal} />
+<ButtonOk on:click={showModal} />
