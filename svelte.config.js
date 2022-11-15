@@ -5,9 +5,7 @@ const preprocessOptions = {
     script: 'typescript',
     style: 'scss'
   },
-  scss: {
-    prependData: `@import 'src/variables.scss';`
-  }
+  postcss: true
 };
 
 export default {
