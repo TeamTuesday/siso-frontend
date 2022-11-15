@@ -7,24 +7,53 @@
   export let text: string | number = '';
 </script>
 
-<button on:click={onClick} class="button">
+<button on:click={onClick} class={$$props.class} style={$$props.style}>
   <img {src} {alt} />
   {text}
 </button>
 
 <style lang="scss">
-  .button {
-    width: 48px;
-    height: 48px;
+  button {
     padding: 0;
     border: none;
-    background: $White;
+    background: transparent;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 3px;
-    padding: 0;
+    gap: 1px;
     font-size: 11px;
+    color: $White;
+    &.circle {
+      border-radius: 100%;
+    }
+    &.size-lg {
+      width: 48px;
+      height: 48px;
+    }
+    &.size-md {
+      width: 36px;
+      height: 36px;
+    }
+    &.size-sm {
+      width: 24px;
+      height: 24px;
+    }
+    &.img-sm {
+      img {
+        width: 24px;
+        height: 24px;
+      }
+    }
+    &.img-md {
+      img {
+        width: 36px;
+        height: 36px;
+      }
+    }
+  }
+
+  img {
+    width: 100%;
   }
 </style>

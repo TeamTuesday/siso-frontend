@@ -26,7 +26,7 @@ function setVoteSubejcts() {
       };
 
       update(datas => {
-        const newArticles = [...datas.voteSubjects, ...newData.voteSubjects];
+        const newArticles = newData.voteSubjects;
 
         datas.voteSubjects = newArticles;
         return datas;
