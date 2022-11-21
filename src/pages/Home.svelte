@@ -2,6 +2,7 @@
   import Confirm from '@/components/common/confirm/Confirm.svelte';
   import Modal from '@/components/modal/Modal.svelte';
   import ButtonOk from '@/components/common/button/ButtonOk.svelte';
+  import Profile from '@/components/common/profile/Profile.svelte';
 
   const showModal = () => {
     const modal = new Modal({
@@ -29,3 +30,5 @@
 
 <div>HOME</div>
 <ButtonOk on:click={showModal} />
+<Profile src="images/sample_user.svg" />
+<Profile src="images/sample_user2.svg" />

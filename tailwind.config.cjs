@@ -9,9 +9,9 @@ module.exports = {
         30: "120px"
       },
       animation: {
-        "fade-in": "fade-in 0.4s ease-in-out",
-        "fade-out": "fade-out 0.4s ease-in-out",
-        "bounce-in": "bounce-in 0.4s ease-in-out",
+        "fade-in": "fade-in 0.15s ease-in-out",
+        "fade-out": "fade-out 0.15s ease-in-out",
+        "bounce-in": "bounce-in 0.15s ease-in-out",
       },
       keyframes: {
         "fade-in": { "0%": { opacity: 0 }, "100%": { opacity: 1 } },
