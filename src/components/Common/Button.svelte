@@ -5,55 +5,21 @@
   export let src = '/';
   export let alt = '';
   export let text: string | number = '';
+  export let size = 'md';
+  export let imgSize = 'md';
 </script>
 
-<button on:click={onClick} class={$$props.class} style={$$props.style}>
-  <img {src} {alt} />
+<button
+  on:click={onClick}
+  class={`${size === 'lg' ? 'w-12 h-12' : 'w-9 h-9'} `}
+  style={$$props.style}
+>
+  <img class={`${imgSize === 'lg' ? 'w-9' : 'w-6'} w-full`} {src} {alt} />
   {text}
 </button>
 
 <style lang="scss">
   button {
-    padding: 0;
-    border: none;
-    background: transparent;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1px;
-    font-size: 11px;
-    color: $White;
-    &.circle {
-      border-radius: 100%;
-    }
-    &.size-lg {
-      width: 48px;
-      height: 48px;
-    }
-    &.size-md {
-      width: 36px;
-      height: 36px;
-    }
-    &.size-sm {
-      width: 24px;
-      height: 24px;
-    }
-    &.img-sm {
-      img {
-        width: 24px;
-        height: 24px;
-      }
-    }
-    &.img-md {
-      img {
-        width: 36px;
-        height: 36px;
-      }
-    }
-  }
-
-  img {
-    width: 100%;
+    @apply flex flex-col justify-center items-center p-0 bg-transparent text-[11px] text-white border-0 gap-[1px];
   }
 </style>

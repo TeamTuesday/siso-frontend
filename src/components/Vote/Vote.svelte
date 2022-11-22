@@ -19,37 +19,28 @@
       '굳세게장식하는오직고행을눈에어디별과것이다굳세게장식하는오직고행을눈에어디?',
     agreeDescription:
       '이것이야말로 황금시대를 얼마나 힘차게 위하여서, 오직 같은 광야에서 봄바람',
-    oppositeDescription:
+    disagreeDescription:
       '이것이야말로 황금시대를 얼마나 힘차게 위하여서, 오직 같은 광야에서 봄바람이다. 것은 얼마나 만천하의 것은 하는'
   };
 </script>
 
-<div class="vote-container">
+<div
+  class="flex flex-col items-center h-full px-4 relative bg-[url('/images/sample_background.jpg')] bg-no-repeat bg-center bg-cover"
+>
   {#await vote then vote}
     <VoteHeader />
     <VoteContents
       title={vote?.title}
       agree_description={vote?.agreeDescription}
-      opposite_description={vote?.oppositeDescription}
+      disagree_description={vote?.disagreeDescription}
     />
     <VoteInfo />
     <Button
       src="/images/icon/icn_next.svg"
       alt="voteCount"
-      class="size-md img-md"
+      size="md"
+      imgSize="lg"
       style="position: absolute; bottom: 6px;"
     />
   {/await}
 </div>
-
-<style lang="scss">
-  .vote-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-    background: url(/images/sample_background.jpg) no-repeat center / cover;
-    padding: 0 16px;
-    position: relative;
-  }
-</style>
