@@ -21,10 +21,24 @@ module.exports = {
       files: ['*.svelte'],
       processor: 'svelte3/svelte3',
       rules: {
-        'no-undef': 'off'
+        'no-undef': 'off',
+        'a11y-click-events-have-key-events': [
+          'error',
+          {
+            handlers: ['onClick']
+          }
+        ],
+      }
+    },
+    {
+      files: ['*.ts'],
+      rules: {
+        '@typescript-eslint/no-unsafe-call': 'off',
+        '@typescript-eslint/no-unsafe-member-access': 'off',
       }
     }
   ],
+
   settings: {
     'svelte3/typescript': require('typescript'),
     // ignore style tags in Svelte because of Tailwind CSS
