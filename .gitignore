@@ -266,7 +266,3 @@ public/build/
 .DS_Store
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij,node,svelte
-
-### Added
-# Lockfiles
-package-lock.json

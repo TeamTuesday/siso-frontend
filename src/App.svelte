@@ -2,7 +2,7 @@
   import Router from '@/Router.svelte';
 </script>
 
-<main>
+<main class="h-[100vh]">
   <Router />
 </main>
 
