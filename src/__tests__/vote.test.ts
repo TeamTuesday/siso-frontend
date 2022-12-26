@@ -1,15 +1,15 @@
 import '@testing-library/jest-dom';
 import {render} from '@testing-library/svelte';
 
-import VoteButton from '@/components/Vote/VoteButton.svelte';
+import Button from '@/components/Common/Button.svelte';
 import VoteContents from '@/components/Vote/VoteContents.svelte';
 import VoteInfo from '@/components/Vote/VoteInfo.svelte';
 
 describe('Vote', () => {
   test('should have props', () => {
-    const description = 'button description';
-    const {getByText} = render(VoteButton, {props: {description}});
-    expect(getByText(description)).toBeInTheDocument();
+    const text = 'button description';
+    const {getByText} = render(Button, {props: {text}});
+    expect(getByText(text)).toBeInTheDocument();
   });
 
   test('should have props', () => {
