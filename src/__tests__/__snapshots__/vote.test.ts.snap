@@ -4,63 +4,45 @@ exports[`Vote should match snapshot 1`] = `
 <body>
   <div>
     <div
-      class="vote-info-container svelte-1jwiw3m"
+      class="w-full flex justify-end mb-[25px]"
     >
       <div
-        class="vote-info-writer svelte-1jwiw3m"
+        class="flex"
       >
         <button
-          class="button svelte-1bc6ctt"
-        >
-          <img
-            alt="sampleUser"
-            src="/images/sample_user.svg"
-          />
-           
-          
-        </button>
-         
-        <p
-          class="vote-info-writer-nickname"
-        >
-          UserName
-        </p>
-      </div>
-       
-      <div
-        class="vote-info-count svelte-1jwiw3m"
-      >
-        <button
-          class="button svelte-1bc6ctt"
+          class="w-12 h-12  svelte-1o342qa"
         >
           <img
             alt="voteCount"
-            src="/images/icon/icon_vote_count.svg"
+            class="w-6 w-full"
+            src="/images/icon/icn_people.svg"
           />
            
-          ooo
+          9M
         </button>
          
         <button
-          class="button svelte-1bc6ctt"
-        >
-          <img
-            alt="likeCount"
-            src="/images/icon/icon_like_count.svg"
-          />
-           
-          mmm
-        </button>
-         
-        <button
-          class="button svelte-1bc6ctt"
+          class="w-12 h-12  svelte-1o342qa"
         >
           <img
             alt="commentCount"
-            src="/images/icon/icon_comment_count.svg"
+            class="w-6 w-full"
+            src="/images/icon/icn_comment_line.svg"
           />
            
-          nnn
+          999
+        </button>
+         
+        <button
+          class="w-12 h-12  svelte-1o342qa"
+        >
+          <img
+            alt="likeCount"
+            class="w-6 w-full"
+            src="/images/icon/icn_heart_line.svg"
+          />
+           
+          9.9K
         </button>
       </div>
     </div>

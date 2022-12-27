@@ -4,10 +4,11 @@ exports[`Button should match snapshot 1`] = `
 <body>
   <div>
     <button
-      class="button svelte-1bc6ctt"
+      class="w-9 h-9  svelte-1o342qa"
     >
       <img
         alt="alt"
+        class="w-6 w-full"
         src="/"
       />
        
