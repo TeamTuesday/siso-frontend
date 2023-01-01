@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const send = async <T>({method = '', path = '', data = {}} = {}) => {
-  const commonUrl = 'http://13.124.104.234:8080';
+  const commonUrl = 'http://h24.asuscomm.com:8080';
 
   const url = commonUrl + path;
 

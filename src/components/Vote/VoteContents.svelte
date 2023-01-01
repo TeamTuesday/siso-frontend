@@ -1,4 +1,10 @@
 <script lang="ts">
+  import {voteSubjects} from '@/store';
+
+  export let vote = async (type: string) => {
+    await voteSubjects.postVote({id, type});
+  };
+  export let id = '';
   export let title = 'no-title';
   export let agree_description = '';
   export let disagree_description = '';
@@ -10,8 +16,12 @@
     >라이프</span
   >
   <h3 class="text-2xl text-white text-center mb-[17px] w-[320px]">{title}</h3>
-  <button class="mb-3 vote-btn">{agree_description}</button>
-  <button class="vote-btn">{disagree_description}</button>
+  <button class="mb-3 vote-btn" on:click={() => vote('agree')}
+    >{agree_description}</button
+  >
+  <button class="vote-btn" on:click={() => vote('disagress')}
+    >{disagree_description}</button
+  >
 </div>
 
 <style lang="scss">

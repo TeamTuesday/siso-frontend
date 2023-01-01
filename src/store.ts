@@ -1,6 +1,6 @@
 /* eslint-disable */
 import {writable} from 'svelte/store';
-import {getApi} from './service/api';
+import {getApi, postApi} from './service/api';
 
 function setVoteSubejcts() {
   let initValues: {voteSubjects: Module.Ivote[]} = {
@@ -36,9 +36,24 @@ function setVoteSubejcts() {
     }
   };
 
+  const postVote = async ({id, type}) => {
+    try {
+      let path = '/vote-vote';
+      const options = {
+        path,
+        data: {id, type}
+      };
+
+      await postApi<{voteSubjects: Module.Ivote[]}>(options);
+    } catch (error) {
+      throw error;
+    }
+  };
+
   return {
     subscribe,
-    fetchVoteSubjects
+    fetchVoteSubjects,
+    postVote
   };
 }
 
