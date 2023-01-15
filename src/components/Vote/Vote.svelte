@@ -2,7 +2,7 @@
   import VoteHeader from '@/components/Vote/VoteHeader.svelte';
   import VoteContents from '@/components/Vote/VoteContents.svelte';
   import VoteInfo from '@/components/Vote/VoteInfo.svelte';
-  import Button from '@/components/Common/Button.svelte';
+  import Button from '@/components/common/button/Button.svelte';
 
   // FIXME : 원래 데이터 가져오던 방식
   // import {router} from 'tinro';

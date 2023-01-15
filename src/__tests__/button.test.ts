@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import {render} from '@testing-library/svelte';
 
-import Button from '@/components/Common/Button.svelte';
+import Button from '@/components/common/button/Button.svelte';
 
 describe('Button', () => {
   const src = '/';

@@ -1,4 +1,4 @@
-import Modal from '@/components/modal/Modal.svelte';
+import Modal from '@/components/common/modal/Modal.svelte';
 import type {SvelteComponent} from 'svelte';
 
 const UI = {
@@ -7,8 +7,12 @@ const UI = {
     open(
       component: SvelteComponent,
       props: {
-        text: string;
+        text?: string;
         ok?(): void;
+        cancel?(): void;
+        onlyOk?: boolean;
+        position?: 'center' | 'top' | 'right' | 'bottom' | 'left';
+        list?: {text?: string; color?: string; onClick?(): void}[];
       }
     ) {
       const modal = new Modal({
