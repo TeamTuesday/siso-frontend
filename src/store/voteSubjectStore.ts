@@ -1,9 +1,17 @@
 /* eslint-disable */
 import {writable} from 'svelte/store';
-import {getApi, postApi} from './service/api';
+import {getApi} from '@/service/api';
 
 function setVoteSubejcts() {
-  let initValues: {voteSubjects: Module.Ivote[]} = {
+  let initValues: {voteSubject: Module.Ivote; voteSubjects: Module.Ivote[]} = {
+    voteSubject: {
+      id: '',
+      title: '',
+      agreeDescription: '',
+      disagreeDescription: '',
+      voteAgreeCount: 0,
+      voteOppositeCount: 0
+    },
     voteSubjects: []
   };
 
@@ -11,6 +19,7 @@ function setVoteSubejcts() {
 
   const {subscribe, update} = writable(values);
 
+  /** 주제 목록 가져오기 */
   const fetchVoteSubjects = async () => {
     try {
       let path = '/vote-subjects';
@@ -36,15 +45,27 @@ function setVoteSubejcts() {
     }
   };
 
-  const postVote = async ({id, type}) => {
+  /** 주제 가져오기 */
+  const fetchVoteSubject = async (id: string) => {
     try {
-      let path = '/vote-vote';
+      let path = `/vote-subjects/${id}`;
+
       const options = {
-        path,
-        data: {id, type}
+        path
       };
 
-      await postApi<{voteSubjects: Module.Ivote[]}>(options);
+      const getDatas = await getApi<{voteSubject: Module.Ivote}>(options);
+
+      const newData: {voteSubject: Module.Ivote} = {
+        voteSubject: getDatas.voteSubject
+      };
+
+      update(datas => {
+        const newArticles = newData.voteSubject;
+
+        datas.voteSubject = newArticles;
+        return datas;
+      });
     } catch (error) {
       throw error;
     }
@@ -53,8 +74,7 @@ function setVoteSubejcts() {
   return {
     subscribe,
     fetchVoteSubjects,
-    postVote
+    fetchVoteSubject
   };
 }
-
-export const voteSubjects = setVoteSubejcts();
+export const voteSubjectStore = setVoteSubejcts();

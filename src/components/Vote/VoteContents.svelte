@@ -1,8 +1,8 @@
 <script lang="ts">
-  import {voteSubjects} from '@/store';
+  import {voteStore} from '@/store/voteStore';
 
   export let vote = async (type: string) => {
-    await voteSubjects.postVote({id, type});
+    await voteStore.postVote({id, type});
   };
   export let id = '';
   export let title = 'no-title';
