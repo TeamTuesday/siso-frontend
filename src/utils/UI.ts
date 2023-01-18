@@ -1,20 +1,12 @@
 import Modal from '@/components/modal/Modal.svelte';
-import type {SvelteComponent} from 'svelte';
 
 const UI = {
   Modal: {
     modals: [],
-    open(
-      component: SvelteComponent,
-      props: {
-        text: string;
-        ok?(): void;
-      }
-    ) {
+    open(props: {component: any; text: string; ok: () => void}) {
       const modal = new Modal({
         target: document.body,
         props: {
-          component,
           props
         }
       });

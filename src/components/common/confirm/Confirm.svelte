@@ -7,7 +7,7 @@
 
   export let text = '';
   export let ok: () => void;
-  let okRef: HTMLElement;
+  let okRef: HTMLButtonElement;
   let disabled = true;
 
   onMount(() => {

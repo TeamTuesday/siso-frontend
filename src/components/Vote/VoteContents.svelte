@@ -14,7 +14,7 @@
   <button class="vote-btn">{disagree_description}</button>
 </div>
 
-<style lang="scss">
+<style lang="postcss">
   .vote-btn {
     @apply w-full h-[150px] flex justify-center items-center bg-[rgba(255,255,255,0.75)] shadow-[0_0_20px_4px_rgba(0,0,0,0.06)]
   rounded-[15px] text-lg text-[#222222] font-bold px-[29px];

@@ -6,7 +6,7 @@
     "build": "npm run check && rollup -c",
     "dev": "rollup -c -w",
     "start": "sirv public --single --no-clear --port 80",
-    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "check": "svelte-check --watch --tsconfig ./tsconfig.json",
     "lint": "eslint . --ext .js,.ts,.svelte --fix",
     "format": "prettier --write '{public,src}/**/*.{css,html,js,ts,svelte}'",
     "prepare": "husky install",
