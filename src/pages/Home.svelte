@@ -4,7 +4,8 @@
   import UI from '@/utils/UI';
 
   const showModal = () => {
-    UI.Modal.open(Confirm, {
+    UI.Modal.open({
+      component: Confirm,
       text: '댓글을 삭제하시겠습니까?',
       ok() {
         console.log('댓글 삭제');

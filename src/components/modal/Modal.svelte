@@ -1,9 +1,12 @@
 <script lang="ts">
   import {onMount} from 'svelte';
 
-  export let component;
   export let animation = 'animate-bounce-up';
-  export let props: {text: string; ok: () => void};
+  export let props: {
+    component: any;
+    text: string;
+    ok: () => void;
+  };
   export let clickToClose = true;
   let nodeRef: HTMLElement;
   let destroyed = false;
@@ -46,6 +49,8 @@
     switch (animation) {
       case 'animate-bounce-up':
         return 'animate-bounce-up-reverse';
+      default:
+        return '';
     }
   };
 </script>
@@ -57,6 +62,6 @@
   on:click={outsideClick}
 >
   <div class={animation}>
-    <svelte:component this={component} {...props} on:close={close} />
+    <svelte:component this={props.component} {...props} on:close={close} />
   </div>
 </div>
