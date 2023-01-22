@@ -5,10 +5,12 @@
   import Menu from '@/components/common/menu/Menu.svelte';
 
   const deleteComment = () => {
-    UI.Modal.open(Confirm, {
+    UI.Modal.open({
+      component: Confirm,
       text: '댓글을 삭제하시겠습니까?',
       ok() {
-        UI.Modal.open(Confirm, {
+        UI.Modal.open({
+          component: Confirm,
           text: '댓글이 삭제되었습니다',
           onlyOk: true,
           ok() {
@@ -20,7 +22,8 @@
   };
 
   const showMore = () => {
-    UI.Modal.open(Menu, {
+    UI.Modal.open({
+      component: Menu,
       position: 'bottom',
       list: [
         {

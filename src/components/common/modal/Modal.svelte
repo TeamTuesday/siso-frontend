@@ -1,12 +1,12 @@
 <script lang="ts">
   import {onMount} from 'svelte';
 
-  export let component;
   export let animation = 'animate-bounce-up';
   export let props: {
-    text?: string;
-    ok?(): void;
-    cancel?(): void;
+    component: any;
+    text: string;
+    ok: () => void;
+    cancel: () => void;
     onlyOk?: boolean;
     position?: 'center' | 'top' | 'right' | 'bottom' | 'left';
     list?: {text?: string; color?: string; onClick?(): void}[];
@@ -67,6 +67,8 @@
     switch (animation) {
       case 'animate-bounce-up':
         return 'animate-bounce-up-reverse';
+      default:
+        return '';
     }
   };
 </script>
@@ -80,6 +82,6 @@
   <div
     class="{animation} {_position} flex justify-center items-center absolute"
   >
-    <svelte:component this={component} {...props} on:close={close} />
+    <svelte:component this={props.component} {...props} on:close={close} />
   </div>
 </div>
