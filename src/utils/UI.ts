@@ -1,9 +1,9 @@
-import Modal from '@/components/modal/Modal.svelte';
+import Modal from '@/components/common/modal/Modal.svelte';
 
 const UI = {
   Modal: {
     modals: [],
-    open(props: {component: any; text: string; ok: () => void}) {
+    open(props: Module.Imodal) {
       const modal = new Modal({
         target: document.body,
         props: {

@@ -3,7 +3,7 @@
   import VoteHeader from '@/components/Vote/VoteHeader.svelte';
   import VoteContents from '@/components/Vote/VoteContents.svelte';
   import VoteInfo from '@/components/Vote/VoteInfo.svelte';
-  import Button from '@/components/Common/Button.svelte';
+  import Button from '@/components/common/button/Button.svelte';
   import {voteSubjectStore} from '@/store/voteSubjectStore';
   import {router} from 'tinro';
 

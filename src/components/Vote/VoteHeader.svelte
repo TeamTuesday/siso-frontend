@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Button from '@/components/Common/Button.svelte';
+  import Button from '@/components/common/button/Button.svelte';
 </script>
 
 <div class="flex justify-between w-full py-4">

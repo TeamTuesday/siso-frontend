@@ -8,6 +8,7 @@
   export let text = '';
   export let ok: () => void;
   let okRef: HTMLButtonElement;
+  export let onlyOk = false;
   let disabled = true;
 
   onMount(() => {
@@ -59,9 +60,11 @@
 <div class="w-[300px] pt-9 px-[22px] pb-5 bg-white rounded-[10px]">
   <p class="font-medium leading-[22px] text-center">{text}</p>
   <div class="w-full mt-[30px] mr-[30px] flex gap-x-4">
-    <div class="flex-1">
-      <ButtonCancel on:click={cancel} />
-    </div>
+    {#if !onlyOk}
+      <div class="flex-1">
+        <ButtonCancel on:click={cancel} />
+      </div>
+    {/if}
     <div class="flex-1">
       <ButtonOk on:click={confirm} bind:ref={okRef} />
     </div>
