@@ -5,9 +5,9 @@
   import VoteInfo from '@/components/Vote/VoteInfo.svelte';
   import Button from '@/components/common/button/Button.svelte';
   import {voteSubjectStore} from '@/store/voteSubjectStore';
-  import {router} from 'tinro';
+  import {meta} from 'tinro';
 
-  const params = router.params();
+  const params = meta().params;
 
   onMount(async () => {
     const {id} = params;
