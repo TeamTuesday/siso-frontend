@@ -1,9 +1,9 @@
 <script lang="ts">
   import {onMount} from 'svelte';
-  import {voteSubjects} from '@/store';
+  import {voteSubjectStore} from '@/store/voteSubjectStore';
 
   onMount(async () => {
-    await voteSubjects.fetchVoteSubjects();
+    await voteSubjectStore.fetchVoteSubjects();
   });
 </script>
 
@@ -17,7 +17,7 @@
         </tr>
       </thead>
       <tbody>
-        {#each $voteSubjects.voteSubjects as vote}
+        {#each $voteSubjectStore.voteSubjects as vote}
           <tr>
             <td>{vote.title}</td>
             <td>

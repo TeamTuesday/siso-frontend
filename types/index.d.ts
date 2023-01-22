@@ -3,7 +3,7 @@ declare namespace Module {
     id: string;
     title: string;
     agreeDescription: string;
-    oppositeDescription: string;
+    disagreeDescription: string;
     voteAgreeCount: number;
     voteOppositeCount: number;
   }
