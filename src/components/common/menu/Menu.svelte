@@ -2,9 +2,9 @@
   import {createEventDispatcher} from 'svelte';
   const dispatch = createEventDispatcher();
 
-  export let list: {text: string; color: string; onClick: () => void}[];
+  export let menu: Module.Imenu[];
 
-  const _color = (item: {text: string; color: string; onClick: () => void}) => {
+  const _color = (item: Module.Imenu) => {
     switch (item.color) {
       case 'red':
         return 'text-[#FF7B52]';
@@ -26,7 +26,7 @@
 </script>
 
 <ul class="w-full rounded-lg bg-white">
-  {#each list as item, index}
+  {#each menu as item, index}
     <li>
       <button
         class="{index !== 0 && 'border-t border-[#D6D6D8]'} {_color(

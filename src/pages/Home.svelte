@@ -25,7 +25,7 @@
     UI.Modal.open({
       component: Menu,
       position: 'bottom',
-      list: [
+      menu: [
         {
           text: '댓글 수정',
           onClick() {

@@ -2,15 +2,7 @@
   import {onMount} from 'svelte';
 
   export let animation = 'animate-bounce-up';
-  export let props: {
-    component: any;
-    text: string;
-    ok: () => void;
-    cancel: () => void;
-    onlyOk?: boolean;
-    position?: 'center' | 'top' | 'right' | 'bottom' | 'left';
-    list?: {text?: string; color?: string; onClick?(): void}[];
-  };
+  export let props: Module.Imodal;
   export let clickToClose = true;
   let nodeRef: HTMLElement;
   let destroyed = false;

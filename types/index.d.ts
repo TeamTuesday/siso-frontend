@@ -7,6 +7,22 @@ declare namespace Module {
     voteAgreeCount: number;
     voteOppositeCount: number;
   }
+
+  interface Imodal {
+    component?: any;
+    text?: string;
+    ok?: () => void;
+    cancel?: () => void;
+    onlyOk?: boolean;
+    position?: 'center' | 'top' | 'right' | 'bottom' | 'left';
+    menu?: Imenu[];
+  }
+
+  interface Imenu {
+    text?: string;
+    color?: string;
+    onClick?: () => void;
+  }
 }
 
 export as namespace Module;
