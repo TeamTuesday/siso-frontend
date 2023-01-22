@@ -13,11 +13,7 @@
     }
   };
 
-  const onClick = (item: {
-    text: string;
-    color: string;
-    onClick: () => void;
-  }) => {
+  const onClick = (item: Module.Imenu) => {
     if (item.onClick) {
       item.onClick();
     }
@@ -33,7 +29,9 @@
           item
         )} w-full px-4 leading-[50px] text-left"
         data-index={index}
-        on:click={onClick(item)}>{item.text}</button
+        on:click={() => {
+          onClick(item);
+        }}>{item.text}</button
       >
     </li>
   {/each}
