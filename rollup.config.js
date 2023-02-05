@@ -12,6 +12,8 @@ import scss from 'rollup-plugin-scss';
 import autoprefixer from 'autoprefixer';
 import postcss from 'postcss';
 import childProcess from 'child_process';
+import {config} from 'dotenv';
+import replace from '@rollup/plugin-replace';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -46,6 +48,14 @@ export default {
     file: 'public/build/bundle.js'
   },
   plugins: [
+    replace({
+      // stringify the object
+      __myapp: JSON.stringify({
+        env: {
+          BASE_URL: config().parsed.BASE_URL
+        }
+      })
+    }),
     svelte({
       preprocess: sveltePreprocess({
         sourceMap: !production,
