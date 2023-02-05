@@ -6,7 +6,7 @@
     "build": "npm run check && rollup -c",
     "dev": "rollup -c -w",
     "local": "rollup -c -w --environment MODE:local",
-    "start": "sirv public --single --no-clear --port 80",
+    "start": "sirv public --single --no-clear --host 0.0.0.0 --port 80",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-check --watch --tsconfig ./tsconfig.json",
     "lint": "eslint . --ext .js,.ts,.svelte --fix",
