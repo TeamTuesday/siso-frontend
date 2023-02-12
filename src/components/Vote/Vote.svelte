@@ -22,8 +22,8 @@
   <VoteContents
     id={$voteSubjectStore.voteSubject?.id}
     title={$voteSubjectStore.voteSubject?.title}
-    agree_description={$voteSubjectStore.voteSubject?.agreeDescription}
-    disagree_description={$voteSubjectStore.voteSubject?.disagreeDescription}
+    agreeDescription={$voteSubjectStore.voteSubject?.agreeDescription}
+    disagreeDescription={$voteSubjectStore.voteSubject?.disagreeDescription}
   />
   <VoteInfo />
   <Button

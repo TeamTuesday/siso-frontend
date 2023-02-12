@@ -1,6 +1,7 @@
 <script lang="ts">
   import {voteStore, voteType} from '@/store/voteStore';
   import {voteSubjectStore} from '@/store/voteSubjectStore';
+  import Countup from 'svelte-countup';
 
   /** 투표하기*/
   export let vote = async (type: voteType) => {
@@ -9,6 +10,14 @@
     } finally {
       voteSubjectStore.subscribe(datas => {
         voteResult = datas.voteSubject;
+        agreePercent = Math.floor(
+          (voteResult.voteAgreeCount / voteResult.voteCount) * 100
+        );
+        agreeStep = Math.floor(voteResult.voteAgreeCount / 100);
+        disagreePercent = Math.floor(
+          (voteResult.voteDisagreeCount / voteResult.voteCount) * 100
+        );
+        disagreeStep = Math.floor(voteResult.voteDisagreeCount / 100);
       });
       votedType = type;
       setTimeout(() => {
@@ -23,8 +32,8 @@
   };
   export let id = '';
   export let title = 'no-title';
-  export let agree_description = '';
-  export let disagree_description = '';
+  export let agreeDescription = '';
+  export let disagreeDescription = '';
   export let votedType: voteType | null = null;
   export let changed = false;
   export let voteResult: Module.Ivote = {
@@ -36,6 +45,10 @@
     voteDisagreeCount: 0,
     voteCount: 0
   };
+  export let agreePercent = 0;
+  export let agreeStep = 0;
+  export let disagreePercent = 0;
+  export let disagreeStep = 0;
 </script>
 
 <div class="flex flex-col items-center justify-center flex-1 pt-4 pb-2">
@@ -51,11 +64,18 @@
   >
     {#if votedType}
       <span class="vote-percent" class:change={changed}>
-        {Math.floor((voteResult.voteAgreeCount / voteResult.voteCount) * 100)}
+        <Countup
+          initial={0}
+          value={agreePercent}
+          duration={300}
+          step={agreeStep}
+          roundto={agreePercent}
+          format={false}
+        />
       </span>
       <span class="vote-percent-suffix" class:change={changed}>%</span>
     {:else}
-      {agree_description}
+      {agreeDescription}
     {/if}
   </button>
   <button
@@ -65,13 +85,18 @@
   >
     {#if votedType}
       <span class="vote-percent" class:change={changed}>
-        {Math.floor(
-          (voteResult.voteDisagreeCount / voteResult.voteCount) * 100
-        )}
+        <Countup
+          initial={0}
+          value={disagreePercent}
+          duration={300}
+          step={disagreeStep}
+          roundto={disagreePercent}
+          format={false}
+        />
       </span>
       <span class="vote-percent-suffix" class:change={changed}>%</span>
     {:else}
-      {disagree_description}
+      {disagreeDescription}
     {/if}
   </button>
   <button
