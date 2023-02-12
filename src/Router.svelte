@@ -6,6 +6,7 @@
   import Vote from '@/components/Vote/Vote.svelte';
   import Login from '@/pages/Login.svelte';
   import Register from '@/pages/Register.svelte';
+  import MyPage from '@/pages/auth/MyPage.svelte';
 </script>
 
 <Route path="/" redirect="/home" />
@@ -14,3 +15,4 @@
 <Route path="/vote/:id"><Vote /></Route>
 <Route path="/login"><Login /></Route>
 <Route path="/register"><Register /></Route>
+<Route path="/auth/mypage"><MyPage /></Route>

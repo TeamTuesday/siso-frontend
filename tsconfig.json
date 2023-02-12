@@ -1,7 +1,7 @@
 {
   "extends": "@tsconfig/svelte/tsconfig.json",
 
-  "include": ["src/**/*", "types/index.d.ts"],
+  "include": ["src/**/*", "types/*.ts"],
   "exclude": ["node_modules/*", "public/*"],
 
   "compilerOptions": {
