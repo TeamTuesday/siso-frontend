@@ -5,7 +5,8 @@ declare namespace Module {
     agreeDescription: string;
     disagreeDescription: string;
     voteAgreeCount: number;
-    voteOppositeCount: number;
+    voteDisagreeCount: number;
+    voteCount: number;
   }
 
   interface Imodal {

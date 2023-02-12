@@ -10,7 +10,8 @@ function setVoteSubejcts() {
       agreeDescription: '',
       disagreeDescription: '',
       voteAgreeCount: 0,
-      voteOppositeCount: 0
+      voteDisagreeCount: 0,
+      voteCount: 0
     },
     voteSubjects: []
   };
