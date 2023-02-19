@@ -107,10 +107,10 @@
 
 <style lang="postcss">
   .vote-btn {
-    @apply w-full h-[150px] flex justify-center items-center bg-[rgba(255,255,255,0.75)] hover:bg-[rgba(255,255,255,0.85)] shadow-[0_0_20px_4px_rgba(0,0,0,0.06)] rounded-[15px] text-lg text-[#222222] font-bold px-[29px] duration-[1500ms] delay-[1500ms];
+    @apply w-full h-[150px] flex justify-center items-center bg-[rgba(255,255,255,0.75)] hover:bg-[rgba(255,255,255,0.85)] shadow-[0_0_20px_4px_rgba(0,0,0,0.06)] rounded-[15px] text-lg text-[#222222] font-bold px-[29px];
   }
   .voted {
-    @apply h-[52px] justify-start;
+    @apply h-[52px] justify-start  duration-[1500ms] delay-[1500ms];
   }
   .vote-percent {
     @apply text-[60px] leading-[60px] font-medium duration-[1500ms];
