@@ -11,16 +11,19 @@
     } finally {
       voteSubjectStore.subscribe(datas => {
         voteResult = datas.voteSubject;
-        agreePercent = Math.floor(
-          (voteResult.voteAgreeCount / voteResult.voteCount) * 100
+        const agreeCount = voteResult.voteAgreeCount;
+        const disagreeCount = voteResult.voteDisagreeCount;
+        const voteCount = voteResult.voteCount;
+        agree.percent = Math.round(
+          (agreeCount / voteCount) * 100
         );
-        agreeStep = Math.floor(voteResult.voteAgreeCount / 100);
-        agreeGuage = 320 * agreePercent / 100;
-        disagreePercent = Math.floor(
-          (voteResult.voteDisagreeCount / voteResult.voteCount) * 100
+        agree.step = Math.round(agreeCount / 100);
+        agree.guage = 320 * agree.percent / 100;
+        disagree.percent = Math.round(
+          (disagreeCount / voteCount) * 100
         );
-        disagreeStep = Math.floor(voteResult.voteDisagreeCount / 100);
-        disagreeGuage = 320 * disagreePercent / 100;
+        disagree.step = Math.round(disagreeCount / 100);
+        disagree.guage = 320 * disagree.percent / 100;
       });
       votedType = type;
       setTimeout(() => {
@@ -35,8 +38,6 @@
   };
   export let id = '';
   export let title = 'no-title';
-  export let agreeDescription = '';
-  export let disagreeDescription = '';
   export let votedType: voteType | null = null;
   export let changed = false;
   export let voteResult: Module.Ivote = {
@@ -48,15 +49,27 @@
     voteDisagreeCount: 0,
     voteCount: 0
   };
-  let agreePercent = 0, agreeStep = 0, agreeGuage = 0, agreeGuageRef;
-  let disagreePercent = 0, disagreeStep = 0, disagreeGuage = 0, disagreeGuageRef;
+  export let agreeDescription = '';
+  export let disagreeDescription = '';
+  let agree = {
+    percent: 0,
+    step: 0,
+    guage: 0,
+    ref: null
+  }
+  let disagree = {
+    percent: 0,
+    step: 0,
+    guage: 0,
+    ref: null
+  }
   function guage(node, { duration, type, width }) {
     return {
       duration,
       css: t => {
         const eased = bounceOut(t);
         if(t === 1) {
-          type === 'agree' ? agreeGuageRef.style.width = `${eased * width}px` :  disagreeGuageRef.style.width = `${eased * width}px`
+          type === 'agree' ? agree.ref.style.width = `${eased * width}px` :  disagree.ref.style.width = `${eased * width}px`
         }
         return `width: ${eased * width}px;`
       }
@@ -79,16 +92,16 @@
       <span class="vote-percent" class:change={changed}>
         <Countup
           initial={0}
-          value={agreePercent}
+          value={agree.percent}
           duration={1000}
-          step={agreeStep}
-          roundto={agreePercent}
+          step={agree.step}
+          roundto={agree.percent}
           format={false}
         />
         <span class="vote-percent-suffix" class:change={changed}>%</span>
       </span>
-      {#if disagreePercent}
-        <span class="vote-guage agree" in:guage="{{duration: 1500, width: agreeGuage, type: 'agree'}}" bind:this={agreeGuageRef}></span>
+      {#if disagree.percent}
+        <span class="vote-guage agree" in:guage="{{duration: 1500, width: agree.guage, type: 'agree'}}" bind:this={agree.ref}></span>
       {/if}
     {:else}
       {agreeDescription}
@@ -103,16 +116,16 @@
       <span class="vote-percent" class:change={changed}>
         <Countup
           initial={0}
-          value={disagreePercent}
+          value={disagree.percent}
           duration={1000}
-          step={disagreeStep}
-          roundto={disagreePercent}
+          step={disagree.step}
+          roundto={disagree.percent}
           format={false}
         />
         <span class="vote-percent-suffix" class:change={changed}>%</span>
       </span>
-      {#if disagreePercent}
-        <span class="vote-guage disagree" in:guage="{{duration: 1500, width: disagreeGuage, type:'disagree'}}" bind:this={disagreeGuageRef}></span>
+      {#if disagree.percent}
+        <span class="vote-guage disagree" in:guage="{{duration: 1500, width: disagree.guage, type:'disagree'}}" bind:this={disagree.ref}></span>
       {/if}
     {:else}
       {disagreeDescription}
