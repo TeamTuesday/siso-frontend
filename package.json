@@ -61,6 +61,7 @@
   "dependencies": {
     "axios": "^0.27.2",
     "sirv-cli": "^2.0.0",
+    "svelte-countup": "^0.2.6",
     "validator": "^13.9.0"
   },
   "lint-staged": {
