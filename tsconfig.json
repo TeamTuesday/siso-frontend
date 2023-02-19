@@ -17,6 +17,7 @@
     "moduleResolution": "Node",
     "baseUrl": "./",
     "paths": {"@/*": ["src/*"]},
-    "types": ["node", "svelte", "jest"]
+    "types": ["node", "svelte", "jest"],
+    "forceConsistentCasingInFileNames": false,
   }
 }

@@ -26,6 +26,7 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/svelte": "^3.1.3",
     "@tsconfig/svelte": "^2.0.0",
+    "@types/validator": "^13.7.12",
     "@typescript-eslint/eslint-plugin": "^5.28.0",
     "@typescript-eslint/parser": "^5.28.0",
     "autoprefixer": "^10.4.13",
@@ -56,12 +57,12 @@
     "tinro": "^0.6.12",
     "ts-jest": "^28.0.5",
     "tslib": "^2.0.0",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "validator": "^13.9.0"
   },
   "dependencies": {
     "axios": "^0.27.2",
-    "sirv-cli": "^2.0.0",
-    "validator": "^13.9.0"
+    "sirv-cli": "^2.0.0"
   },
   "lint-staged": {
     "*.{js,ts,svelte}": "eslint --cache --fix",
