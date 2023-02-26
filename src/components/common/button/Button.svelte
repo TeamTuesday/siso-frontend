@@ -5,21 +5,34 @@
   export let src = '/';
   export let alt = '';
   export let text: string | number = '';
-  export let size = 'md';
-  export let imgSize = 'md';
+  export let size = '';
+  export let imgSize = '';
 </script>
 
 <button
   on:click={onClick}
-  class={`${size === 'lg' ? 'w-12 h-12' : 'w-9 h-9'} `}
+  class:button-size-md={size==='md'}
+  class:button-size-lg={size==='lg'}
   style={$$props.style}
 >
-  <img class={`${imgSize === 'lg' ? 'w-9' : 'w-6'} w-full`} {src} {alt} />
+  <img 
+    class={'w-full'}
+    class:w-9={imgSize==='lg'} 
+    class:w-6={imgSize==='md'} 
+    {src} 
+    {alt} 
+  />
   {text}
 </button>
 
 <style lang="postcss">
   button {
     @apply flex flex-col justify-center items-center p-0 bg-transparent text-[11px] text-white border-0 gap-[1px];
+  }
+  .button-size-md {
+    @apply w-9 h-9;
+  }
+  .button-size-lg {
+    @apply w-12 h-12;
   }
 </style>
