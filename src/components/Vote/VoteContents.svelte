@@ -3,6 +3,7 @@
   import {voteSubjectStore} from '@/store/voteSubjectStore';
   import Countup from 'svelte-countup';
   import { bounceOut } from 'svelte/easing';
+  import Button from '@/components/common/button/Button.svelte';
 
   /** 투표하기*/
   export let vote = async (type: voteType) => {
@@ -78,6 +79,10 @@
 </script>
 
 <div class="flex flex-col items-center justify-center flex-1 pt-4 pb-2">
+  <button
+    class="w-max px-3 py-[2px] h-[22px] text-center text-white text-xs mb-[6px] rounded-[20px] bg-[rgba(255,255,255,0.3)] border border-[rgba(85,85,85,0.3)] mt-5"
+    on:click={() => reset()}>리셋하기</button
+  >
   <span
     class="w-max px-3 py-[2px] h-[22px] text-center text-white text-xs mb-[6px] rounded-[20px] bg-[rgba(255,255,255,0.3)] border border-[rgba(85,85,85,0.3)]"
     >라이프</span
@@ -131,21 +136,62 @@
       {disagreeDescription}
     {/if}
   </button>
-  <button
-    class="w-max px-3 py-[2px] h-[22px] text-center text-white text-xs mb-[6px] rounded-[20px] bg-[rgba(255,255,255,0.3)] border border-[rgba(85,85,85,0.3)] mt-5"
-    on:click={() => reset()}>리셋하기</button
-  >
+  <div class="best-comments-container">
+    <div class="best-comment">
+      <div class="best-comment-header">
+        <div class="flex gap-2 items-center">
+          <p class="text-[18px] leading-[21px] font-bold text-[#BD8DDB]">A</p>
+          <span
+            class="w-[19px] h-[19px] flex flex-col justify-center items-center p-0 bg-transparent text-[11px] text-white border-0 gap-[1px]"
+          >
+            <img class="w-full" src="/images/sample_user.svg" alt="sampleUser" />
+          </span>
+          <p class="text-[12px] leading-[16px] text-[#222222] font-medium">유저네임</p>
+        </div>
+        <div class="flex items-center gap-1">
+          <p class="text-[12px] leading-[16px] text-[#999999]">105</p>
+          <Button src="/images/icon/icn_poll_comment.svg" alt="menuButton" ></Button>
+        </div>
+      </div>
+      <div class="best-comment-content">상식적으로 생각하면 A가 일반적임 ㅇㅇ</div>
+    </div>
+    <div class="best-comment mt-4">
+      <div class="best-comment-header">
+        <div class="flex gap-2 items-center">
+          <p class="text-[18px] leading-[21px] font-bold text-[#FFD952]">B</p>
+          <span
+            class="w-[19px] h-[19px] flex flex-col justify-center items-center p-0 bg-transparent text-[11px] text-white border-0 gap-[1px]"
+          >
+            <img class="w-full" src="/images/sample_user.svg" alt="sampleUser" />
+          </span>
+          <p class="text-[12px] leading-[16px] text-[#222222] font-medium">유저네임</p>
+        </div>
+        <div class="flex items-center gap-1">
+          <p class="text-[12px] leading-[16px] text-[#999999]">105</p>
+          <Button src="/images/icon/icn_polled_comment.svg" alt="menuButton" ></Button>
+        </div>
+      </div>
+      <div class="best-comment-content">상식어디감? 일반적이라고 늘 옳은게 아님 한 번 더 생각해보면 답나옴ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
+      </div>
+    </div>
+    <Button 
+      src="/images/icon/icn_next_gray_right.svg"
+      text="댓글더보기"
+      style="color: #666666; flex-direction: row-reverse; gap: 4px; margin-top: 12px;"
+      imgFull={false}
+    />
+  </div>
 </div>
 
 <style lang="postcss">
   .vote-btn {
-    @apply w-full h-[150px] flex justify-center items-center bg-[rgba(255,255,255,0.75)] hover:bg-[rgba(255,255,255,0.85)] shadow-[0_0_20px_4px_rgba(0,0,0,0.06)] rounded-[15px] text-lg text-[#222222] font-bold px-[29px];
+    @apply w-full h-[150px] flex justify-center items-center bg-[rgba(255,255,255,0.75)] hover:bg-[rgba(255,255,255,0.85)] shadow-[0_0_20px_4px_rgba(0,0,0,0.06)] rounded-[10px] text-lg text-[#222222] font-bold px-[29px];
   }
   .voted {
     @apply relative h-[52px] justify-start  duration-[1500ms] delay-[1500ms];
   }
   .vote-guage {
-    @apply content-[''] absolute left-0 top-0 h-full rounded-[15px] transition-all duration-[1500ms] z-10;
+    @apply content-[''] absolute left-0 top-0 h-full rounded-[10px] transition-all duration-[1500ms] z-10;
   }
   .agree {
     @apply bg-[#BD8DDB];
@@ -164,5 +210,21 @@
   }
   .vote-percent-suffix.change {
     @apply text-[18px] leading-[28px] font-medium;
+  }
+  .best-comments-container {
+    @apply mt-4 w-full flex flex-col justify-center items-center bg-white rounded-[10px] p-4;
+  }
+  .best-comment {
+    @apply w-full flex flex-col justify-start gap-2 pb-5 border-b;
+  }
+  .best-comment-header {
+    @apply w-full flex justify-between items-center;
+  }
+  .best-comment-content {
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    word-wrap:break-word;
+    @apply text-[14px] leading-[20px] text-[#666666] font-medium w-full min-h-[40px] overflow-hidden;
   }
 </style>

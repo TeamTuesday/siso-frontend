@@ -7,6 +7,7 @@
   export let text: string | number = '';
   export let size = '';
   export let imgSize = '';
+  export let imgFull = true;
 </script>
 
 <button
@@ -16,7 +17,7 @@
   style={$$props.style}
 >
   <img 
-    class={'w-full'}
+    class:w-full={imgFull}
     class:w-9={imgSize==='lg'} 
     class:w-6={imgSize==='md'} 
     {src} 
