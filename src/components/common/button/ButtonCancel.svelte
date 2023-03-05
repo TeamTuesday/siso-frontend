@@ -6,7 +6,7 @@
 </script>
 
 <button
-  class="w-full h-9 bg-[#DDDDDD] text-sm font-medium text-[#AAAAAA] rounded-lg transition hover:shadow-[0_4px_4px_rgba(0,0,0,0.25)]"
+  class="w-full h-9 bg-brightGray text-sm font-medium text-gray rounded-lg transition hover:shadow-[0_4px_4px_rgba(0,0,0,0.25)]"
   on:click={() => {
     dispatch('click');
   }}>{text}</button

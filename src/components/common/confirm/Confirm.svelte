@@ -58,7 +58,7 @@
 </script>
 
 <div class="w-[300px] pt-9 px-[22px] pb-5 bg-white rounded-[10px]">
-  <p class="font-medium leading-[22px] text-center">{text}</p>
+  <p class="font-medium leading-sm text-center">{text}</p>
   <div class="w-full mt-[30px] mr-[30px] flex gap-x-4">
     {#if !onlyOk}
       <div class="flex-1">

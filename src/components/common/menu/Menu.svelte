@@ -7,9 +7,9 @@
   const _color = (item: Module.Imenu) => {
     switch (item.color) {
       case 'red':
-        return 'text-[#FF7B52]';
+        return 'text-emphasis';
       default:
-        return 'text-[#222222]';
+        return 'text-darkGray';
     }
   };
 
@@ -27,7 +27,7 @@
       <button
         class="{index !== 0 && 'border-t border-[#D6D6D8]'} {_color(
           item
-        )} w-full px-4 leading-[50px] text-left"
+        )} w-full px-4 leading-5xl text-left"
         data-index={index}
         on:click={() => {
           onClick(item);
