@@ -1,6 +1,8 @@
 <script lang="ts">
   import {voteStore, voteType} from '@/store/voteStore';
   import {voteSubjectStore} from '@/store/voteSubjectStore';
+  import Countup from 'svelte-countup';
+  import {bounceOut} from 'svelte/easing';
 
   /** 투표하기*/
   export let vote = async (type: voteType) => {
@@ -9,6 +11,15 @@
     } finally {
       voteSubjectStore.subscribe(datas => {
         voteResult = datas.voteSubject;
+        const agreeCount = voteResult.voteAgreeCount;
+        const disagreeCount = voteResult.voteDisagreeCount;
+        const voteCount = voteResult.voteCount;
+        agree.percent = Math.round((agreeCount / voteCount) * 100);
+        agree.step = Math.round(agreeCount / 100);
+        agree.guage = (320 * agree.percent) / 100;
+        disagree.percent = Math.round((disagreeCount / voteCount) * 100);
+        disagree.step = Math.round(disagreeCount / 100);
+        disagree.guage = (320 * disagree.percent) / 100;
       });
       votedType = type;
       setTimeout(() => {
@@ -23,8 +34,6 @@
   };
   export let id = '';
   export let title = 'no-title';
-  export let agree_description = '';
-  export let disagree_description = '';
   export let votedType: voteType | null = null;
   export let changed = false;
   export let voteResult: Module.Ivote = {
@@ -36,6 +45,56 @@
     voteDisagreeCount: 0,
     voteCount: 0
   };
+  export let agreeDescription = '';
+  export let disagreeDescription = '';
+  interface voteElement {
+    percent: number;
+    step: number;
+    guage: number;
+    ref: HTMLSpanElement | null;
+  }
+  let agree: voteElement = {
+    percent: 0,
+    step: 0,
+    guage: 0,
+    ref: null
+  };
+  let disagree: voteElement = {
+    percent: 0,
+    step: 0,
+    guage: 0,
+    ref: null
+  };
+  function guage(
+    node: HTMLElement,
+    {duration, type, width}: {duration: number; type: string; width: number}
+  ) {
+    if (node) {
+      return {
+        duration,
+        css: (t: number) => {
+          const eased = bounceOut(t);
+          if (t === 1) {
+            if (type === 'agree' && agree.ref) {
+              agree.ref.style.width = `${eased * width}px`;
+            }
+            if (type === 'disagree' && disagree.ref) {
+              disagree.ref.style.width = `${eased * width}px`;
+            }
+          }
+          return `width: ${eased * width}px;`;
+        }
+      };
+    } else {
+      return {
+        duration: 0,
+        css: (t: number) => {
+          const eased = bounceOut(t);
+          return `width: ${eased * width}px;`;
+        }
+      };
+    }
+  }
 </script>
 
 <div class="flex flex-col items-center justify-center flex-1 pt-4 pb-2">
@@ -51,11 +110,26 @@
   >
     {#if votedType}
       <span class="vote-percent" class:change={changed}>
-        {Math.floor((voteResult.voteAgreeCount / voteResult.voteCount) * 100)}
+        <Countup
+          initial={0}
+          value={agree.percent}
+          duration={1000}
+          step={agree.step}
+          roundto={agree.percent}
+          format={false}
+        />
+        <span class="vote-percent-suffix" class:change={changed}>%</span>
       </span>
-      <span class="vote-percent-suffix" class:change={changed}>%</span>
+      {#if agree.percent}
+        <span
+          class="vote-guage agree"
+          in:guage={(agree.ref,
+          {duration: 1500, width: agree.guage, type: 'agree'})}
+          bind:this={agree.ref}
+        />
+      {/if}
     {:else}
-      {agree_description}
+      {agreeDescription}
     {/if}
   </button>
   <button
@@ -65,13 +139,26 @@
   >
     {#if votedType}
       <span class="vote-percent" class:change={changed}>
-        {Math.floor(
-          (voteResult.voteDisagreeCount / voteResult.voteCount) * 100
-        )}
+        <Countup
+          initial={0}
+          value={disagree.percent}
+          duration={1000}
+          step={disagree.step}
+          roundto={disagree.percent}
+          format={false}
+        />
+        <span class="vote-percent-suffix" class:change={changed}>%</span>
       </span>
-      <span class="vote-percent-suffix" class:change={changed}>%</span>
+      {#if disagree.percent}
+        <span
+          class="vote-guage disagree"
+          in:guage={(disagree.ref,
+          {duration: 1500, width: disagree.guage, type: 'disagree'})}
+          bind:this={disagree.ref}
+        />
+      {/if}
     {:else}
-      {disagree_description}
+      {disagreeDescription}
     {/if}
   </button>
   <button
@@ -82,19 +169,28 @@
 
 <style lang="postcss">
   .vote-btn {
-    @apply w-full h-[150px] flex justify-center items-center bg-[rgba(255,255,255,0.75)] hover:bg-[rgba(255,255,255,0.85)] shadow-[0_0_20px_4px_rgba(0,0,0,0.06)] rounded-[15px] text-lg text-[#222222] font-bold px-[29px] duration-[1500ms] delay-[1500ms];
+    @apply w-full h-[150px] flex justify-center items-center bg-[rgba(255,255,255,0.75)] hover:bg-[rgba(255,255,255,0.85)] shadow-[0_0_20px_4px_rgba(0,0,0,0.06)] rounded-[15px] text-lg text-[#222222] font-bold px-[29px];
   }
   .voted {
-    @apply h-[52px] justify-start;
+    @apply relative h-[52px] justify-start  duration-[1500ms] delay-[1500ms];
+  }
+  .vote-guage {
+    @apply content-[''] absolute left-0 top-0 h-full rounded-[15px] transition-all duration-[1500ms] z-10;
+  }
+  .agree {
+    @apply bg-[#BD8DDB];
+  }
+  .disagree {
+    @apply bg-[#FFD952];
   }
   .vote-percent {
-    @apply text-[60px] leading-[60px] font-medium duration-[1500ms];
+    @apply absolute left-[30px] text-[60px] leading-[60px] font-medium duration-[1500ms] flex items-end z-20;
   }
   .vote-percent.change {
     @apply text-[18px] leading-[28px];
   }
   .vote-percent-suffix {
-    @apply text-[30px] leading-[60px] font-light duration-[1500ms];
+    @apply text-[30px] leading-[30px] font-light duration-[1500ms];
   }
   .vote-percent-suffix.change {
     @apply text-[18px] leading-[28px] font-medium;
