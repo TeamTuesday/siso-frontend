@@ -52,6 +52,7 @@
   };
   export let agreeDescription = '';
   export let disagreeDescription = '';
+  export let voteCount = 0;
   let agree = {
     percent: 0,
     step: 0,
@@ -77,65 +78,69 @@
     };
   }
 </script>
-
-<div class="flex flex-col items-center justify-center flex-1 pt-4 pb-2">
-  <button
-    class="w-max px-3 py-[2px] h-[22px] text-center text-white text-xs mb-[6px] rounded-[20px] bg-[rgba(255,255,255,0.3)] border border-[rgba(85,85,85,0.3)] mt-5"
-    on:click={() => reset()}>리셋하기</button
-  >
-  <span
-    class="w-max px-3 py-[2px] h-[22px] text-center text-white text-xs mb-[6px] rounded-[20px] bg-[rgba(255,255,255,0.3)] border border-[rgba(85,85,85,0.3)]"
-    >라이프</span
-  >
-  <h3 class="text-2xl text-white text-center mb-[17px] w-[320px]">{title}</h3>
-  <button
-    class="mb-3 vote-btn"
-    class:voted={votedType}
-    on:click={() => vote(voteType.AGREE)}
-  >
-    {#if votedType}
-      <span class="vote-percent" class:change={changed}>
-        <Countup
-          initial={0}
-          value={agree.percent}
-          duration={1000}
-          step={agree.step}
-          roundto={agree.percent}
-          format={false}
-        />
-        <span class="vote-percent-suffix" class:change={changed}>%</span>
-      </span>
-      {#if disagree.percent}
-        <span class="vote-guage agree" in:guage="{{duration: 1500, width: agree.guage, type: 'agree'}}" bind:this={agree.ref}></span>
+<div class="flex-1 overflow-hidden">
+  <div class="flex flex-col items-center flex-1 pt-4 pb-2 h-full" class:!h-max={changed}>
+    <div class="w-full flex gap-2">
+      <span
+        class="w-max px-3 py-[2px] h-[22px] text-center text-white text-xs mb-[6px] rounded-[20px] bg-[rgba(255,255,255,0.3)] border border-[rgba(85,85,85,0.3)]"
+        >라이프</span
+      >
+      <p class="text-white text-[14px] leading-5 font-medium">{voteCount}명 참여</p>
+      <button
+        class="w-max px-3 py-[2px] h-[22px] text-center text-white text-xs mb-[6px] rounded-[20px] bg-[rgba(255,255,255,0.3)] border border-[rgba(85,85,85,0.3)]"
+        on:click={() => reset()}>리셋하기</button
+      >
+    </div>
+    <h3 class="vote-title" class:voted={changed}>{title}</h3>
+    <button
+      class="mb-3 vote-btn"
+      class:voted={votedType}
+      on:click={() => vote(voteType.AGREE)}
+    >
+      {#if votedType}
+        <span class="vote-percent" class:change={changed}>
+          <Countup
+            initial={0}
+            value={agree.percent}
+            duration={1000}
+            step={agree.step}
+            roundto={agree.percent}
+            format={false}
+          />
+          <span class="vote-percent-suffix" class:change={changed}>%</span>
+        </span>
+        {#if disagree.percent}
+          <span class="vote-guage agree" in:guage="{{duration: 1500, width: agree.guage, type: 'agree'}}" bind:this={agree.ref}></span>
+        {/if}
+      {:else}
+        {agreeDescription}
       {/if}
-    {:else}
-      {agreeDescription}
-    {/if}
-  </button>
-  <button
-    class="vote-btn"
-    class:voted={votedType}
-    on:click={() => vote(voteType.DISAGREE)}
-  >
-    {#if votedType}
-      <span class="vote-percent" class:change={changed}>
-        <Countup
-          initial={0}
-          value={disagree.percent}
-          duration={1000}
-          step={disagree.step}
-          roundto={disagree.percent}
-          format={false}
-        />
-        <span class="vote-percent-suffix" class:change={changed}>%</span>
-      </span>
-      {#if disagree.percent}
-        <span class="vote-guage disagree" in:guage="{{duration: 1500, width: disagree.guage, type:'disagree'}}" bind:this={disagree.ref}></span>
+    </button>
+    <button
+      class="vote-btn"
+      class:voted={votedType}
+      on:click={() => vote(voteType.DISAGREE)}
+    >
+      {#if votedType}
+        <span class="vote-percent" class:change={changed}>
+          <Countup
+            initial={0}
+            value={disagree.percent}
+            duration={1000}
+            step={disagree.step}
+            roundto={disagree.percent}
+            format={false}
+          />
+          <span class="vote-percent-suffix" class:change={changed}>%</span>
+        </span>
+        {#if disagree.percent}
+          <span class="vote-guage disagree" in:guage="{{duration: 1500, width: disagree.guage, type:'disagree'}}" bind:this={disagree.ref}></span>
+        {/if}
+      {:else}
+        {disagreeDescription}
       {/if}
-    {:else}
-      {disagreeDescription}
-    {/if}
-  </button>
+    </button>
+  </div>
   <div class="best-comments-container">
     <div class="best-comment">
       <div class="best-comment-header">
@@ -183,12 +188,23 @@
   </div>
 </div>
 
+
 <style lang="postcss">
+  .vote-title {
+    @apply w-full h-[96px] text-2xl text-white mb-[21px] duration-[1000ms] overflow-hidden;
+  }
+  .vote-title.voted {
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    word-wrap:break-word;
+    @apply !h-[32px];
+  }
   .vote-btn {
     @apply w-full h-[150px] flex justify-center items-center bg-[rgba(255,255,255,0.75)] hover:bg-[rgba(255,255,255,0.85)] shadow-[0_0_20px_4px_rgba(0,0,0,0.06)] rounded-[10px] text-lg text-[#222222] font-bold px-[29px];
   }
-  .voted {
-    @apply relative h-[52px] justify-start  duration-[1500ms] delay-[1500ms];
+  .vote-btn.voted {
+    @apply relative h-[52px] justify-start  duration-[1000ms] delay-[1500ms];
   }
   .vote-guage {
     @apply content-[''] absolute left-0 top-0 h-full rounded-[10px] transition-all duration-[1500ms] z-10;
