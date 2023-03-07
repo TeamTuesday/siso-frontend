@@ -20,6 +20,6 @@
 
 <style lang="postcss">
   button {
-    @apply flex flex-col justify-center items-center p-0 bg-transparent text-[11px] text-white border-0 gap-[1px];
+    @apply flex flex-col justify-center items-center p-0 bg-transparent text-xs text-white border-0 gap-[1px];
   }
 </style>

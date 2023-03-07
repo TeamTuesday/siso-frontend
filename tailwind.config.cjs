@@ -3,6 +3,58 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      colors: {
+        // Colors
+        "logo": "#DDDDDD",
+        "primary": { DEFAULT: "#BD8DDB",  variant: "#FAF6FC" },
+        "secondary": { DEFAULT: "#FFD952",  variant: "#FFFCF1" },
+        "info": { DEFAULT: "#CCCCCC",  variant: "#E7F0F9" },
+        "emphasis": { DEFAULT: "#FF7B52",  variant: "#DDDDDD" },
+
+        // Gray scales
+        "darkGray": "#222222",
+        "middleGray": "#666666",
+        "rainyGray": "#999999",
+        "gray": "#AAAAAA",
+        "lightGray": "#CCCCCC",
+        "brightGray": "#DDDDDD",
+        "faintGray": "#EEEEEE",
+
+        // Surfaces
+        "lightContainer": "#F6F6F6",
+        "brightContainer": "#F9F9F9",
+        "background": "#FFFFFF",
+
+        // Lines
+        "line": "#EEEEEE",
+      },
+      fontSize: {
+        '2xs': '0.625rem', // 10px
+        xs: '0.75rem', // 12px
+        sm: '0.875rem', // 14px
+        base: '1rem', // 16px
+        lg: '1.125rem',// 18px
+        xl: '1.25rem', // 20px
+        '2xl': '1.5rem',// 24px
+        '3xl': '1.875rem', // 30px
+        '4xl': '2.25rem', // 36px
+        '5xl': '3rem', // 48px
+        '6xl': '3.75rem', // 60px
+      },
+      lineHeight: {
+        '2xs': '0.875rem', // 14px
+        xs: '1rem', // 16px
+        sm: '1.25rem', // 20px
+        base: '1.5rem', // 24px
+        lg: '1.75rem',// 28px
+        xl: '1.875rem', // 30px
+        '2xl': '2rem', // 32px
+        '3xl': '2.25rem', // 36px
+        '4xl': '2.5rem', // 40px
+        '5xl': '3rem', // 48px
+        '6xl': '3.75rem', // 60px
+      },
+
       width: {
         30: "120px"
       },
