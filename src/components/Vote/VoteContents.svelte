@@ -23,7 +23,7 @@
           (disagreeCount / voteCount) * 100
         );
         disagree.step = Math.round(disagreeCount / 100) || 1;
-        disagree.guage = 320 * disagree.percent / 100;]
+        disagree.guage = 320 * disagree.percent / 100;
       });
       votedType = type;
       setTimeout(() => {
