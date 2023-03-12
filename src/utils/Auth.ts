@@ -1,4 +1,5 @@
-import {isEmail, isStrongPassword} from 'validator';
+import isEmail from 'validator/lib/isEmail';
+import isStrongPassword from 'validator/lib/isStrongPassword';
 
 export const checkEmail = (email: AuthModule.TEmail, callback = () => ({})) => {
   if (!isEmail(email)) {

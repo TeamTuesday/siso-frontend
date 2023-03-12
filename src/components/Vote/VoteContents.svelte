@@ -23,7 +23,7 @@
         agree.percent = Math.round(
           (agreeCount / voteCount) * 100
         );
-        agree.step = Math.round(agreeCount / 100);
+        agree.step = Math.round(agreeCount / 100) || 1;
         agree.guage = 320 * agree.percent / 100;
         agree.bestComment = datas.commentA;
         // 반대 데이터
@@ -61,31 +61,56 @@
   export let agreeDescription = '';
   export let disagreeDescription = '';
   export let voteCount = 0;
-  let agree = {
+  interface voteElement {
+    percent: number;
+    step: number;
+    guage: number;
+    ref: HTMLSpanElement | null;
+    bestComment: VoteModule.BestComment | null;
+  }
+  let agree: voteElement = {
     percent: 0,
     step: 0,
     guage: 0,
     ref: null,
     bestComment: null
-  }
-  let disagree = {
+  };
+  let disagree: voteElement = {
     percent: 0,
     step: 0,
     guage: 0,
     ref: null,
     bestComment: null
-  }
-  function guage(node, { duration, type, width }) {
-    return {
-      duration,
-      css: t => {
-        const eased = bounceOut(t);
-        if(t === 1) {
-          type === 'agree' ? agree.ref.style.width = `${eased * width}px` :  disagree.ref.style.width = `${eased * width}px`
+  };
+  function guage(
+    node: HTMLElement,
+    {duration, type, width}: {duration: number; type: string; width: number}
+  ) {
+    if (node) {
+      return {
+        duration,
+        css: (t: number) => {
+          const eased = bounceOut(t);
+          if (t === 1) {
+            if (type === 'agree' && agree.ref) {
+              agree.ref.style.width = `${eased * width}px`;
+            }
+            if (type === 'disagree' && disagree.ref) {
+              disagree.ref.style.width = `${eased * width}px`;
+            }
+          }
+          return `width: ${eased * width}px;`;
         }
-        return `width: ${eased * width}px;`
-      }
-    };
+      };
+    } else {
+      return {
+        duration: 0,
+        css: (t: number) => {
+          const eased = bounceOut(t);
+          return `width: ${eased * width}px;`;
+        }
+      };
+    }
   }
 </script>
 <div class="flex-1 overflow-hidden">
@@ -119,8 +144,8 @@
           />
           <span class="vote-percent-suffix" class:change={changed}>%</span>
         </span>
-        {#if disagree.percent}
-          <span class="vote-guage agree" in:guage="{{duration: 1500, width: agree.guage, type: 'agree'}}" bind:this={agree.ref}></span>
+        {#if agree.percent}
+          <span class="vote-guage agree" in:guage="{agree.ref, {duration: 1500, width: agree.guage, type: 'agree'}}" bind:this={agree.ref}></span>
         {/if}
       {:else}
         {agreeDescription}
@@ -144,7 +169,7 @@
           <span class="vote-percent-suffix" class:change={changed}>%</span>
         </span>
         {#if disagree.percent}
-          <span class="vote-guage disagree" in:guage="{{duration: 1500, width: disagree.guage, type:'disagree'}}" bind:this={disagree.ref}></span>
+          <span class="vote-guage disagree" in:guage="{disagree.ref, {duration: 1500, width: disagree.guage, type:'disagree'}}" bind:this={disagree.ref}></span>
         {/if}
       {:else}
         {disagreeDescription}
