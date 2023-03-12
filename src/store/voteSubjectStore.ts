@@ -1,9 +1,10 @@
 /* eslint-disable */
 import {writable} from 'svelte/store';
 import {getApi} from '@/service/api';
+import {voteType} from '@/store/voteStore';
 
 function setVoteSubejcts() {
-  let initValues: {voteSubject: Module.Ivote; voteSubjects: Module.Ivote[]} = {
+  let initValues: {voteSubject: Module.Ivote; voteSubjects: Module.Ivote[], commentA:VoteModule.BestComment, commentB:VoteModule.BestComment} = {
     voteSubject: {
       id: '',
       title: '',
@@ -13,7 +14,29 @@ function setVoteSubejcts() {
       voteDisagreeCount: 0,
       voteCount: 0
     },
-    voteSubjects: []
+    voteSubjects: [],
+    commentA: {
+      id: '',
+      createdAt: '',
+      updateAt: '',
+      deleteAt: '',
+      userId: '',
+      parentId: '',
+      voteType: voteType.AGREE,
+      comment: '',
+      likeCount: 0
+    },
+    commentB: {
+      id: '',
+      createdAt: '',
+      updateAt: '',
+      deleteAt: '',
+      userId: '',
+      parentId: '',
+      voteType: voteType.AGREE,
+      comment: '',
+      likeCount: 0
+    }
   };
 
   let values = {...initValues};
@@ -72,10 +95,36 @@ function setVoteSubejcts() {
     }
   };
 
+  /** 주제 가져오기 */
+  const fetchBestComments = async (id: string) => {
+    try {
+      let path = `/comments/best/${id}`;
+
+      const options = {
+        path
+      };
+
+      const getDatas = await getApi<{comments: VoteModule.BestComments}>(options);
+
+      const newData: {comments: VoteModule.BestComments} = {
+        comments: getDatas.comments
+      };
+
+      update(datas => {
+        datas.commentA = newData.comments.commentA;
+        datas.commentB = newData.comments.commentB;
+        return datas;
+      });
+    } catch (error) {
+      throw error;
+    }
+  };
+
   return {
     subscribe,
     fetchVoteSubjects,
-    fetchVoteSubject
+    fetchVoteSubject,
+    fetchBestComments
   };
 }
 export const voteSubjectStore = setVoteSubejcts();

@@ -3,30 +3,38 @@
   import {voteSubjectStore} from '@/store/voteSubjectStore';
   import Countup from 'svelte-countup';
   import { bounceOut } from 'svelte/easing';
+  import BestComment from '@/components/vote/BestComment.svelte';
   import Button from '@/components/common/button/Button.svelte';
 
-  /** 투표하기*/
+  /** 투표하기 */
   export let vote = async (type: voteType) => {
+    votedType = type;
     try {
       await voteStore.postVote({subjectId: id, type});
+    } catch (error) {
+      console.error(error);
     } finally {
       voteSubjectStore.subscribe(datas => {
+        // 투표결과 
         voteResult = datas.voteSubject;
-        const agreeCount = voteResult.voteAgreeCount;
-        const disagreeCount = voteResult.voteDisagreeCount;
         const voteCount = voteResult.voteCount;
+        // 찬성 데이터
+        const agreeCount = voteResult.voteAgreeCount;
         agree.percent = Math.round(
           (agreeCount / voteCount) * 100
         );
         agree.step = Math.round(agreeCount / 100);
         agree.guage = 320 * agree.percent / 100;
+        agree.bestComment = datas.commentA;
+        // 반대 데이터
+        const disagreeCount = voteResult.voteDisagreeCount;
         disagree.percent = Math.round(
           (disagreeCount / voteCount) * 100
         );
         disagree.step = Math.round(disagreeCount / 100);
         disagree.guage = 320 * disagree.percent / 100;
+        disagree.bestComment = datas.commentB;
       });
-      votedType = type;
       setTimeout(() => {
         changed = true;
       }, 1500);
@@ -57,13 +65,15 @@
     percent: 0,
     step: 0,
     guage: 0,
-    ref: null
+    ref: null,
+    bestComment: null
   }
   let disagree = {
     percent: 0,
     step: 0,
     guage: 0,
-    ref: null
+    ref: null,
+    bestComment: null
   }
   function guage(node, { duration, type, width }) {
     return {
@@ -142,43 +152,8 @@
     </button>
   </div>
   <div class="best-comments-container">
-    <div class="best-comment">
-      <div class="best-comment-header">
-        <div class="flex gap-2 items-center">
-          <p class="text-[18px] leading-[21px] font-bold text-[#BD8DDB]">A</p>
-          <span
-            class="w-[19px] h-[19px] flex flex-col justify-center items-center p-0 bg-transparent text-[11px] text-white border-0 gap-[1px]"
-          >
-            <img class="w-full" src="/images/sample_user.svg" alt="sampleUser" />
-          </span>
-          <p class="text-[12px] leading-[16px] text-[#222222] font-medium">유저네임</p>
-        </div>
-        <div class="flex items-center gap-1">
-          <p class="text-[12px] leading-[16px] text-[#999999]">105</p>
-          <Button src="/images/icon/icn_poll_comment.svg" alt="menuButton" ></Button>
-        </div>
-      </div>
-      <div class="best-comment-content">상식적으로 생각하면 A가 일반적임 ㅇㅇ</div>
-    </div>
-    <div class="best-comment mt-4">
-      <div class="best-comment-header">
-        <div class="flex gap-2 items-center">
-          <p class="text-[18px] leading-[21px] font-bold text-[#FFD952]">B</p>
-          <span
-            class="w-[19px] h-[19px] flex flex-col justify-center items-center p-0 bg-transparent text-[11px] text-white border-0 gap-[1px]"
-          >
-            <img class="w-full" src="/images/sample_user.svg" alt="sampleUser" />
-          </span>
-          <p class="text-[12px] leading-[16px] text-[#222222] font-medium">유저네임</p>
-        </div>
-        <div class="flex items-center gap-1">
-          <p class="text-[12px] leading-[16px] text-[#999999]">105</p>
-          <Button src="/images/icon/icn_polled_comment.svg" alt="menuButton" ></Button>
-        </div>
-      </div>
-      <div class="best-comment-content">상식어디감? 일반적이라고 늘 옳은게 아님 한 번 더 생각해보면 답나옴ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
-      </div>
-    </div>
+    <BestComment type={voteType.AGREE} data={agree.bestcomment} />
+    <BestComment type={voteType.DISAGREE} data={disagree.bestcomment} />
     <Button 
       src="/images/icon/icn_next_gray_right.svg"
       text="댓글더보기"
@@ -229,18 +204,5 @@
   }
   .best-comments-container {
     @apply mt-4 w-full flex flex-col justify-center items-center bg-white rounded-[10px] p-4;
-  }
-  .best-comment {
-    @apply w-full flex flex-col justify-start gap-2 pb-5 border-b;
-  }
-  .best-comment-header {
-    @apply w-full flex justify-between items-center;
-  }
-  .best-comment-content {
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    display: -webkit-box;
-    word-wrap:break-word;
-    @apply text-[14px] leading-[20px] text-[#666666] font-medium w-full min-h-[40px] overflow-hidden;
   }
 </style>
