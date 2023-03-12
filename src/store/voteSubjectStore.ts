@@ -4,7 +4,12 @@ import {getApi} from '@/service/api';
 import {voteType} from '@/store/voteStore';
 
 function setVoteSubejcts() {
-  let initValues: {voteSubject: Module.Ivote; voteSubjects: Module.Ivote[], commentA:VoteModule.BestComment, commentB:VoteModule.BestComment} = {
+  let initValues: {
+    voteSubject: Module.Ivote;
+    voteSubjects: Module.Ivote[];
+    commentA: VoteModule.BestComment;
+    commentB: VoteModule.BestComment;
+  } = {
     voteSubject: {
       id: '',
       title: '',
@@ -104,7 +109,9 @@ function setVoteSubejcts() {
         path
       };
 
-      const getDatas = await getApi<{comments: VoteModule.BestComments}>(options);
+      const getDatas = await getApi<{comments: VoteModule.BestComments}>(
+        options
+      );
 
       const newData: {comments: VoteModule.BestComments} = {
         comments: getDatas.comments

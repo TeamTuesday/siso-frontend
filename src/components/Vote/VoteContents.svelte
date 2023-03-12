@@ -2,7 +2,7 @@
   import {voteStore, voteType} from '@/store/voteStore';
   import {voteSubjectStore} from '@/store/voteSubjectStore';
   import Countup from 'svelte-countup';
-  import { bounceOut } from 'svelte/easing';
+  import {bounceOut} from 'svelte/easing';
   import BestComment from '@/components/vote/BestComment.svelte';
   import Button from '@/components/common/button/Button.svelte';
 
@@ -15,24 +15,20 @@
       console.error(error);
     } finally {
       voteSubjectStore.subscribe(datas => {
-        // 투표결과 
+        // 투표결과
         voteResult = datas.voteSubject;
         const voteCount = voteResult.voteCount;
         // 찬성 데이터
         const agreeCount = voteResult.voteAgreeCount;
-        agree.percent = Math.round(
-          (agreeCount / voteCount) * 100
-        );
+        agree.percent = Math.round((agreeCount / voteCount) * 100);
         agree.step = Math.round(agreeCount / 100) || 1;
-        agree.guage = 320 * agree.percent / 100;
+        agree.guage = (320 * agree.percent) / 100;
         agree.bestComment = datas.commentA;
         // 반대 데이터
         const disagreeCount = voteResult.voteDisagreeCount;
-        disagree.percent = Math.round(
-          (disagreeCount / voteCount) * 100
-        );
+        disagree.percent = Math.round((disagreeCount / voteCount) * 100);
         disagree.step = Math.round(disagreeCount / 100);
-        disagree.guage = 320 * disagree.percent / 100;
+        disagree.guage = (320 * disagree.percent) / 100;
         disagree.bestComment = datas.commentB;
       });
       setTimeout(() => {
@@ -67,7 +63,7 @@
     guage: number;
     ref: HTMLSpanElement | null;
     bestComment: VoteModule.BestComment | null;
-  }
+  };
   let agree: voteElement = {
     percent: 0,
     step: 0,
@@ -113,14 +109,20 @@
     }
   }
 </script>
+
 <div class="flex-1 overflow-hidden">
-  <div class="flex flex-col items-center flex-1 pt-4 pb-2 h-full" class:!h-max={changed}>
+  <div
+    class="flex flex-col items-center flex-1 pt-4 pb-2 h-full"
+    class:!h-max={changed}
+  >
     <div class="w-full flex gap-2">
       <span
         class="w-max px-3 py-[2px] h-[22px] text-center text-white text-xs mb-[6px] rounded-[20px] bg-[rgba(255,255,255,0.3)] border border-[rgba(85,85,85,0.3)]"
         >라이프</span
       >
-      <p class="text-white text-[14px] leading-5 font-medium">{voteCount}명 참여</p>
+      <p class="text-white text-[14px] leading-5 font-medium">
+        {voteCount}명 참여
+      </p>
       <button
         class="w-max px-3 py-[2px] h-[22px] text-center text-white text-xs mb-[6px] rounded-[20px] bg-[rgba(255,255,255,0.3)] border border-[rgba(85,85,85,0.3)]"
         on:click={() => reset()}>리셋하기</button
@@ -145,7 +147,11 @@
           <span class="vote-percent-suffix" class:change={changed}>%</span>
         </span>
         {#if agree.percent}
-          <span class="vote-guage agree" in:guage="{agree.ref, {duration: 1500, width: agree.guage, type: 'agree'}}" bind:this={agree.ref}></span>
+          <span
+            class="vote-guage agree"
+            in:guage={agree.ref, {duration: 1500, width: agree.guage, type: 'agree'}}
+            bind:this={agree.ref}
+          />
         {/if}
       {:else}
         {agreeDescription}
@@ -169,7 +175,11 @@
           <span class="vote-percent-suffix" class:change={changed}>%</span>
         </span>
         {#if disagree.percent}
-          <span class="vote-guage disagree" in:guage="{disagree.ref, {duration: 1500, width: disagree.guage, type:'disagree'}}" bind:this={disagree.ref}></span>
+          <span
+            class="vote-guage disagree"
+            in:guage={disagree.ref, {duration: 1500, width: disagree.guage, type: 'disagree'}}
+            bind:this={disagree.ref}
+          />
         {/if}
       {:else}
         {disagreeDescription}
@@ -177,9 +187,9 @@
     </button>
   </div>
   <div class="best-comments-container">
-    <BestComment type={voteType.AGREE} data={agree.bestcomment} />
-    <BestComment type={voteType.DISAGREE} data={disagree.bestcomment} />
-    <Button 
+    <BestComment type={voteType.AGREE} data={agree.bestComment || null} />
+    <BestComment type={voteType.DISAGREE} data={disagree.bestComment || null} />
+    <Button
       src="/images/icon/icn_next_gray_right.svg"
       text="댓글더보기"
       style="color: #666666; flex-direction: row-reverse; gap: 4px; margin-top: 12px;"
@@ -187,7 +197,6 @@
     />
   </div>
 </div>
-
 
 <style lang="postcss">
   .vote-title {
@@ -197,7 +206,7 @@
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     display: -webkit-box;
-    word-wrap:break-word;
+    word-wrap: break-word;
     @apply !h-[32px];
   }
   .vote-btn {

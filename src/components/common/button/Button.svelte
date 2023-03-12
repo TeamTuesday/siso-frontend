@@ -12,16 +12,16 @@
 
 <button
   on:click={onClick}
-  class:button-size-md={size==='md'}
-  class:button-size-lg={size==='lg'}
+  class:button-size-md={size === 'md'}
+  class:button-size-lg={size === 'lg'}
   style={$$props.style}
 >
-  <img 
+  <img
     class:w-full={imgFull}
-    class:w-9={imgSize==='lg'} 
-    class:w-6={imgSize==='md'} 
-    {src} 
-    {alt} 
+    class:w-9={imgSize === 'lg'}
+    class:w-6={imgSize === 'md'}
+    {src}
+    {alt}
   />
   {text}
 </button>

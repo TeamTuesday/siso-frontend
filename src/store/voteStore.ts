@@ -26,7 +26,10 @@ function setVote() {
     } catch (error) {
       throw error;
     } finally {
-      await Promise.all([voteSubjectStore.fetchVoteSubject(subjectId), voteSubjectStore.fetchBestComments(subjectId)])
+      await Promise.all([
+        voteSubjectStore.fetchVoteSubject(subjectId),
+        voteSubjectStore.fetchBestComments(subjectId)
+      ]);
     }
   };
 
