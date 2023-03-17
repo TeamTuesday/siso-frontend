@@ -1,8 +1,8 @@
 <script lang="ts">
   import {onMount} from 'svelte';
-  import VoteHeader from '@/components/Vote/VoteHeader.svelte';
-  import VoteContents from '@/components/Vote/VoteContents.svelte';
-  import VoteInfo from '@/components/Vote/VoteInfo.svelte';
+  import VoteHeader from '@/components/vote/VoteHeader.svelte';
+  import VoteContents from '@/components/vote/VoteContents.svelte';
+  import VoteInfo from '@/components/vote/VoteInfo.svelte';
   import Button from '@/components/common/button/Button.svelte';
   import {voteSubjectStore} from '@/store/voteSubjectStore';
   import {meta} from 'tinro';
@@ -24,6 +24,7 @@
     title={$voteSubjectStore.voteSubject?.title}
     agreeDescription={$voteSubjectStore.voteSubject?.agreeDescription}
     disagreeDescription={$voteSubjectStore.voteSubject?.disagreeDescription}
+    voteCount={$voteSubjectStore.voteSubject?.voteCount}
   />
   <VoteInfo />
   <Button
