@@ -1,16 +1,13 @@
-# don't ever lint node_modules
+.DS_Store
 node_modules
+/build
+/.svelte-kit
+/package
+.env
+.env.*
+!.env.example
 
-# don't lint build output (make sure it's set to your correct build folder name)
-build
-
-# don't lint nyc coverage output
-coverage
-
-.eslintrc.cjs
-
-.babel.config.js
-
-rollup.config.js
-
-svelte.config.js
+# Ignore files for PNPM, NPM and YARN
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
