@@ -6,7 +6,6 @@ export enum voteType {
   AGREE = 'AGREE',
   DISAGREE = 'DISAGREE'
 }
-
 function setVote() {
   /** 투표하기 */
   const postVote = async ({
@@ -27,7 +26,10 @@ function setVote() {
     } catch (error) {
       throw error;
     } finally {
-      await voteSubjectStore.fetchVoteSubject(subjectId);
+      await Promise.all([
+        voteSubjectStore.fetchVoteSubject(subjectId),
+        voteSubjectStore.fetchBestComments(subjectId)
+      ]);
     }
   };
 
