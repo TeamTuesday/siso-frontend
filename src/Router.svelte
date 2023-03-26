@@ -3,7 +3,7 @@
 
   import Home from '@/pages/Home.svelte';
   import List from '@/pages/List.svelte';
-  import Vote from '@/components/vote/Vote.svelte';
+  import Vote from '@/pages/Vote.svelte';
   import Login from '@/pages/auth/Login.svelte';
   import Register from '@/pages/auth/Register.svelte';
   import MyPage from '@/pages/auth/MyPage.svelte';
