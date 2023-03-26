@@ -14,16 +14,12 @@
         const agreeCount = voteResult.voteAgreeCount;
         const disagreeCount = voteResult.voteDisagreeCount;
         const voteCount = voteResult.voteCount;
-        agree.percent = Math.round(
-          (agreeCount / voteCount) * 100
-        );
+        agree.percent = Math.round((agreeCount / voteCount) * 100);
         agree.step = Math.round(agreeCount / 100) || 1;
-        agree.guage = 320 * agree.percent / 100;
-        disagree.percent = Math.round(
-          (disagreeCount / voteCount) * 100
-        );
+        agree.guage = (320 * agree.percent) / 100;
+        disagree.percent = Math.round((disagreeCount / voteCount) * 100);
         disagree.step = Math.round(disagreeCount / 100) || 1;
-        disagree.guage = 320 * disagree.percent / 100;
+        disagree.guage = (320 * disagree.percent) / 100;
       });
       votedType = type;
       setTimeout(() => {
