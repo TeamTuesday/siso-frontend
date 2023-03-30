@@ -46,6 +46,7 @@
       title={$voteSubjectStore.voteSubject?.title}
       agreeDescription={$voteSubjectStore.voteSubject?.agreeDescription}
       disagreeDescription={$voteSubjectStore.voteSubject?.disagreeDescription}
+      voteCount={$voteSubjectStore.voteSubject?.voteCount}
     />
     <VoteInfo />
     <Button
