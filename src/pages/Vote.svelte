@@ -15,7 +15,7 @@
     const {id} = params;
     await voteSubjectStore.fetchVoteSubject(id);
     const myNotice = sessionStorage.getItem('myNotice');
-    if(myNotice) {
+    if (myNotice) {
       hideNotice = true;
       return;
     } else {
@@ -24,16 +24,20 @@
       setTimeout(() => {
         showNotice = false;
       }, 3000);
-      setTimeout(()=> {
+      setTimeout(() => {
         hideNotice = true;
-      }, 4500)
+      }, 4500);
     }
   });
 </script>
 
-<div class="h-[calc(100%+56px)] transition duration-[1500ms] bg-[url('/images/sample_background.jpg')]" class:show-notice-wrapper={showNotice} class:!h-full={hideNotice}>
+<div
+  class="h-[calc(100%+56px)] transition duration-[1500ms] bg-[url('/images/sample_background.jpg')]"
+  class:show-notice-wrapper={showNotice}
+  class:!h-full={hideNotice}
+>
   <div
-    class="h-[calc(100%-56px)] flex flex-col items-center px-4 relative bg-no-repeat bg-center bg-cover" 
+    class="h-[calc(100%-56px)] flex flex-col items-center px-4 relative bg-no-repeat bg-center bg-cover"
     class:!h-full={hideNotice}
   >
     <VoteHeader />
@@ -53,8 +57,12 @@
       style="position: absolute; bottom: 6px;"
     />
   </div>
-  <div class="flex h-[56px] w-full bg-black/20 justify-center items-center text-white"
-  class:!hidden={hideNotice}>위로 밀어 다음 주제를 확인하세요</div>
+  <div
+    class="flex h-[56px] w-full bg-black/20 justify-center items-center text-white"
+    class:!hidden={hideNotice}
+  >
+    위로 밀어 다음 주제를 확인하세요
+  </div>
 </div>
 
 <style lang="postcss">
