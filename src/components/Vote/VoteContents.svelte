@@ -8,7 +8,6 @@
 
   /** 투표하기 */
   export let vote = async (type: voteType) => {
-    votedType = type;
     try {
       await voteStore.postVote({subjectId: id, type});
     } catch (error) {
@@ -31,6 +30,7 @@
         disagree.guage = (320 * disagree.percent) / 100;
         disagree.bestComment = datas.commentB;
       });
+      votedType = type;
       setTimeout(() => {
         changed = true;
       }, 1500);
@@ -120,7 +120,7 @@
         class="w-max px-3 py-[2px] h-[22px] text-center text-white text-xs mb-[6px] rounded-[20px] bg-[rgba(255,255,255,0.3)] border border-[rgba(85,85,85,0.3)]"
         >라이프</span
       >
-      <p class="text-white text-[14px] leading-5 font-medium">
+      <p class="text-white text-[14px] font-medium">
         {voteCount}명 참여
       </p>
       <button
