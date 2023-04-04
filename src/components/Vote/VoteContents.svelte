@@ -8,6 +8,9 @@
 
   /** 투표하기 */
   export let vote = async (type: voteType) => {
+    if(votedType) {
+      return;
+    }
     try {
       await voteStore.postVote({subjectId: id, type});
     } catch (error) {
