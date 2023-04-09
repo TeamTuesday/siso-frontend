@@ -25,5 +25,3 @@ declare namespace Module {
     onClick?: () => void;
   }
 }
-
-export as namespace Module;

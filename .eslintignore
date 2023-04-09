@@ -11,6 +11,4 @@ coverage
 
 .babel.config.js
 
-rollup.config.js
-
 svelte.config.js

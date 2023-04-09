@@ -1,23 +1,20 @@
 {
-  "extends": "@tsconfig/svelte/tsconfig.json",
-
-  "include": ["src/**/*", "types/*.ts"],
-  "exclude": ["node_modules/*", "public/*"],
-
-  "compilerOptions": {
-    "target": "ESNEXT",
-    "module": "ESNEXT",
-    "noImplicitAny": false,
-    "strictNullChecks": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "outDir": "./built",
-    "moduleResolution": "Node",
-    "baseUrl": "./",
-    "paths": {"@/*": ["src/*"]},
-    "types": ["node", "svelte", "jest"],
-    "forceConsistentCasingInFileNames": false,
-  }
+	"extends": "./.svelte-kit/tsconfig.json",
+	"include": ["src/**/*", "store/*.ts", "types/*.ts", "service/*.ts"],
+	"exclude": ["node_modules/*", "public/*"],
+	"compilerOptions": {
+		"allowJs": true,
+		"checkJs": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true,
+		"skipLibCheck": true,
+		"sourceMap": true,
+		"strict": true,
+		"moduleResolution": "Node",
+	}
+	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
+	//
+	// If you want to overwrite includes/excludes, make sure to copy over the relevant includes/excludes
+	// from the referenced tsconfig.json - TypeScript does not merge them in
 }

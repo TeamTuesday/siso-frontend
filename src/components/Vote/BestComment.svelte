@@ -1,6 +1,6 @@
 <script lang="ts">
-  import {voteType} from '@/store/voteStore';
-  import Button from '@/components/common/button/Button.svelte';
+  import {voteType} from '$store/voteStore';
+  import Button from '$components/common/button/Button.svelte';
 
   export let type: voteType = voteType.AGREE;
   export let data: VoteModule.BestComment | null = {

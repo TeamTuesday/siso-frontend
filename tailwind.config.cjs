@@ -1,6 +1,7 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.svelte"],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'class',
+  content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
     extend: {
       colors: {
@@ -90,4 +91,4 @@ module.exports = {
     purgeLayersByDefault: true,
     removeDeprecatedGapUtilities: true,
   },
-};
+}

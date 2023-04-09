@@ -1,6 +1,6 @@
 <script lang="ts">
   import {onMount} from 'svelte';
-  import UserService from '@/service/user.service';
+  import UserService from '$service/user.service';
 
   let user: UserModule.Iuser = {
     id: 0,

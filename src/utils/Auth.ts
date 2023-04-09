@@ -1,7 +1,8 @@
 import isEmail from 'validator/lib/isEmail';
 import isStrongPassword from 'validator/lib/isStrongPassword';
+import type { AuthModule } from '$types/auth';
 
-export const checkEmail = (email: AuthModule.TEmail, callback = () => ({})) => {
+export const checkEmail = (email: AuthModule.TEmail, callback = () => {} ) => {
   if (!isEmail(email)) {
     callback();
     throw new Error('Email is not valid');
@@ -10,7 +11,7 @@ export const checkEmail = (email: AuthModule.TEmail, callback = () => ({})) => {
 
 export const checkPassword = (
   password: AuthModule.TPassword,
-  callback = () => ({})
+  callback = () => {}
 ) => {
   if (!isStrongPassword(password)) {
     callback();
@@ -21,7 +22,7 @@ export const checkPassword = (
 export const checkConfirmPassword = (
   password: AuthModule.TPassword,
   confirmPassword: AuthModule.TConfirmPassword,
-  callback = () => ({})
+  callback = () => {}
 ) => {
   if (password !== confirmPassword) {
     callback();

@@ -1,7 +1,7 @@
 /* eslint-disable */
 import {writable} from 'svelte/store';
-import {getApi} from '@/service/api';
-import {voteType} from '@/store/voteStore';
+import {getApi} from '$service/api';
+import {voteType} from '$store/voteStore';
 
 function setVoteSubejcts() {
   let initValues: {

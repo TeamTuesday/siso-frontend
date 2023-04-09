@@ -1,8 +1,8 @@
 <script lang="ts">
-  import Confirm from '@/components/common/confirm/Confirm.svelte';
-  import ButtonOk from '@/components/common/button/ButtonOk.svelte';
-  import UI from '@/utils/UI';
-  import Menu from '@/components/common/menu/Menu.svelte';
+  import Confirm from '$components/common/confirm/Confirm.svelte';
+  import ButtonOk from '$components/common/button/ButtonOk.svelte';
+  import UI from '$utils/UI';
+  import Menu from '$components/common/menu/Menu.svelte';
 
   const deleteComment = () => {
     UI.Modal.open({

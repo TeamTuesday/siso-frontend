@@ -1,10 +1,10 @@
 <script lang="ts">
-  import {voteStore, voteType} from '@/store/voteStore';
-  import {voteSubjectStore} from '@/store/voteSubjectStore';
+  import {voteStore, voteType} from '$store/voteStore';
+  import {voteSubjectStore} from '$store/voteSubjectStore';
   import Countup from 'svelte-countup';
   import {bounceOut} from 'svelte/easing';
-  import BestComment from '@/components/vote/BestComment.svelte';
-  import Button from '@/components/common/button/Button.svelte';
+  import BestComment from '$components/Vote/BestComment.svelte';
+  import Button from '$components/common/button/Button.svelte';
 
   /** 투표하기 */
   export let vote = async (type: voteType) => {
@@ -63,7 +63,7 @@
     guage: number;
     ref: HTMLSpanElement | null;
     bestComment: VoteModule.BestComment | null;
-  };
+  }
   let agree: voteElement = {
     percent: 0,
     step: 0,
@@ -149,7 +149,8 @@
         {#if agree.percent}
           <span
             class="vote-guage agree"
-            in:guage={agree.ref, {duration: 1500, width: agree.guage, type: 'agree'}}
+            in:guage={(agree.ref,
+            {duration: 1500, width: agree.guage, type: 'agree'})}
             bind:this={agree.ref}
           />
         {/if}
@@ -177,7 +178,8 @@
         {#if disagree.percent}
           <span
             class="vote-guage disagree"
-            in:guage={disagree.ref, {duration: 1500, width: disagree.guage, type: 'disagree'}}
+            in:guage={(disagree.ref,
+            {duration: 1500, width: disagree.guage, type: 'disagree'})}
             bind:this={disagree.ref}
           />
         {/if}
