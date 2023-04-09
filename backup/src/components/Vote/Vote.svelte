@@ -4,7 +4,7 @@
   import VoteContents from '@/components/Vote/VoteContents.svelte';
   import VoteInfo from '@/components/Vote/VoteInfo.svelte';
   import Button from '@/components/common/button/Button.svelte';
-  import {voteSubjectStore} from '@/store/voteSubjectStore';
+  import {voteSubjectStore} from '$store/voteSubjectStore';
   import {meta} from 'tinro';
 
   const params = meta().params;

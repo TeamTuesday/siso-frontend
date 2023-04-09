@@ -3,7 +3,7 @@ import {rest} from 'msw';
 import {setupServer} from 'msw/node';
 import {render, screen} from '@testing-library/svelte';
 import MyPage from '@/pages/auth/MyPage.svelte';
-import UserService from '@/service/user.service';
+import UserService from '$service/user.service';
 
 const mockUser = {
   id: 1,

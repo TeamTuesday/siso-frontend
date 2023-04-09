@@ -1,6 +1,6 @@
 /* eslint-disable */
-import {postApi} from '@/service/api';
-import {voteSubjectStore} from '@/store/voteSubjectStore';
+import {postApi} from '$service/api';
+import {voteSubjectStore} from '$store/voteSubjectStore';
 
 export enum voteType {
   AGREE = 'AGREE',

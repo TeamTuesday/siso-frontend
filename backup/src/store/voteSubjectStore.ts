@@ -1,6 +1,6 @@
 /* eslint-disable */
 import {writable} from 'svelte/store';
-import {getApi} from '@/service/api';
+import {getApi} from '$service/api';
 
 function setVoteSubejcts() {
   let initValues: {voteSubject: Module.Ivote; voteSubjects: Module.Ivote[]} = {

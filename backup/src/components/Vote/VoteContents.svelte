@@ -1,6 +1,6 @@
 <script lang="ts">
-  import {voteStore, voteType} from '@/store/voteStore';
-  import {voteSubjectStore} from '@/store/voteSubjectStore';
+  import {voteStore, voteType} from '$store/voteStore';
+  import {voteSubjectStore} from '$store/voteSubjectStore';
   import Countup from 'svelte-countup';
   import {bounceOut} from 'svelte/easing';
 
