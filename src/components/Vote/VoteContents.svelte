@@ -135,6 +135,7 @@
     <button
       class="mb-3 vote-btn"
       class:voted={votedType}
+      class:selected={votedType === voteType.AGREE && changed}
       on:click={() => vote(voteType.AGREE)}
     >
       {#if votedType}
@@ -163,6 +164,7 @@
     <button
       class="vote-btn"
       class:voted={votedType}
+      class:selected={votedType === voteType.DISAGREE && changed}
       on:click={() => vote(voteType.DISAGREE)}
     >
       {#if votedType}
@@ -213,10 +215,13 @@
     @apply !h-[32px];
   }
   .vote-btn {
-    @apply w-full h-[150px] flex justify-center items-center bg-[rgba(255,255,255,0.75)] hover:bg-[rgba(255,255,255,0.85)] shadow-[0_0_20px_4px_rgba(0,0,0,0.06)] rounded-[10px] text-lg text-[#222222] font-bold px-[29px];
+    @apply w-full h-[150px] flex justify-center items-center bg-[rgba(255,255,255,0.75)] hover:bg-[rgba(255,255,255,0.85)] shadow-[0_0_20px_4px_rgba(0,0,0,0.06)] rounded-[10px] text-lg text-[#222222] font-bold px-[29px] after:opacity-0;
   }
   .vote-btn.voted {
-    @apply relative h-[52px] justify-start  duration-[1000ms] delay-[1500ms];
+    @apply relative h-[52px] justify-start duration-[1000ms] delay-[1500ms];
+  }
+  .vote-btn.selected {
+    @apply after:content-[''] after:absolute after:left-0 after:h-[56px] after:w-full after:border-[4px] after:border-white after:rounded-[10px] after:z-20 after:opacity-100 after:duration-[1000ms] after:delay-[1500ms];
   }
   .vote-guage {
     @apply content-[''] absolute left-0 top-0 h-full rounded-[10px] transition-all duration-[1500ms] z-10;
