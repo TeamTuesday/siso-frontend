@@ -1,5 +1,5 @@
 import adapter from '@sveltejs/adapter-auto';
-import { vitePreprocess } from '@sveltejs/kit/vite';
+import {vitePreprocess} from '@sveltejs/kit/vite';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -14,7 +14,12 @@ const config = {
 		adapter: adapter(),
 		alias: {
 			$: 'src',
-		},
+			$types: 'src/types',
+			$utils: 'src/utils',
+			$store: 'src/store',
+			$service: 'src/service',
+			$components: 'src/components'
+		}
 	}
 };
 

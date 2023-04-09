@@ -1,6 +1,7 @@
 <script lang="ts">
 	import {onMount} from 'svelte';
-	import {checkEmail, checkPassword} from '@/utils/Auth';
+	import {checkEmail, checkPassword} from '$utils/Auth';
+	import type {AuthModule} from '$types/auth';
 
 	let email: AuthModule.Iinput = {value: '', ref: null};
 	let password: AuthModule.Iinput = {value: '', ref: null};

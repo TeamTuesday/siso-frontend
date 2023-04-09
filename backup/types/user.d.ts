@@ -10,5 +10,3 @@ declare namespace UserModule {
     profileImage: string;
   }
 }
-
-export as namespace UserModule;

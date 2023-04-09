@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/siso-frontend.iml" filepath="$PROJECT_DIR$/.idea/siso-frontend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/siso-frontend.iml" filepath="$PROJECT_DIR$/siso-frontend.iml" />
     </modules>
   </component>
 </project>

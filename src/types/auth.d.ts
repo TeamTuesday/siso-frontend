@@ -1,12 +1,10 @@
-declare namespace AuthModule {
-  export type Tref = HTMLInputElement | null;
-  export type TEmail = string;
-  export type TPassword = string;
-  export type TConfirmPassword = string;
-  export interface Iinput {
+export namespace AuthModule {
+  type Tref = HTMLInputElement | null;
+  type TEmail = string;
+  type TPassword = string;
+  type TConfirmPassword = string;
+  interface Iinput {
     value: string;
     ref: Tref;
   }
 }
-
-export as namespace AuthModule;

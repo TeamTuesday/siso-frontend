@@ -8,5 +8,3 @@ declare namespace AuthModule {
     ref: Tref;
   }
 }
-
-export as namespace AuthModule;
