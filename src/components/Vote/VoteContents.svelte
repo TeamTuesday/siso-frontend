@@ -5,6 +5,7 @@
   import {bounceOut} from 'svelte/easing';
   import BestComment from '@/components/vote/BestComment.svelte';
   import Button from '@/components/common/button/Button.svelte';
+    import { onMount } from 'svelte';
 
   /** 투표하기 */
   export let vote = async (type: voteType) => {
@@ -35,6 +36,12 @@
       });
       votedType = type;
       setTimeout(() => {
+        changeStart = true;
+      }, 1000);
+      setTimeout(() => {
+        // best commnet 화면에서의 contents wrapper padding top 계산법 : (100vh - 상단바 - 현재 보이는 컨텐츠박스 사이즈(best comment까지 포함된)) - 하단바)/2
+        // vote-btn사이즈가 150px->52px로 줄어드는데, 줄어든 뒤에 값을 받으면 애니메이션 타이밍이 꼬여서 미리 계산된 값을 넣어주기로함. (98px*2반영)
+        voteContentsWrapperRef.style.paddingTop = (screen.height - 68 - voteContentsContainerRef.clientHeight + 98*2 - bestCommentContainerRef.clientHeight - 73)/2 + 'px';
         changed = true;
       }, 1500);
     }
@@ -47,6 +54,7 @@
   export let id = '';
   export let title = 'no-title';
   export let votedType: voteType | null = null;
+  export let changeStart = false;
   export let changed = false;
   export let voteResult: Module.Ivote = {
     id: '',
@@ -81,6 +89,8 @@
     ref: null,
     bestComment: null
   };
+
+  /** 퍼센트만큼 차오르는거 표현하는 애니메이션 */
   function guage(
     node: HTMLElement,
     {duration, type, width}: {duration: number; type: string; width: number}
@@ -111,13 +121,24 @@
       };
     }
   }
+  let voteContentsWrapperRef;
+  let voteContentsContainerRef;
+  let bestCommentContainerRef;
+
+  onMount(() => {
+    // contents wrapper 초기 padding top 계산법 : (100vh - 상단바 - 현재 보이는 컨텐츠박스 사이즈 - 하단바)/2
+    voteContentsWrapperRef.style.paddingTop = (screen.height - 68 - voteContentsContainerRef.clientHeight - 73)/2 + 'px';
+  });
 </script>
 
 <div class="flex-1 overflow-hidden">
   <div
-    class="flex flex-col items-center flex-1 pt-4 pb-2 h-full"
-    class:!h-max={changed}
+    class="vote-contents-wrapper"
+    class:change-start={changeStart}
+    class:change={changed}
+    bind:this={voteContentsWrapperRef}
   >
+  <div class="flex flex-col" bind:this={voteContentsContainerRef}>
     <div class="w-full flex gap-2">
       <span
         class="w-max px-3 py-[2px] h-[22px] text-center text-white text-xs mb-[6px] rounded-[20px] bg-[rgba(255,255,255,0.3)] border border-[rgba(85,85,85,0.3)]"
@@ -191,19 +212,26 @@
       {/if}
     </button>
   </div>
-  <div class="best-comments-container">
-    <BestComment type={voteType.AGREE} data={agree.bestComment || null} />
-    <BestComment type={voteType.DISAGREE} data={disagree.bestComment || null} />
-    <Button
-      src="/images/icon/icn_next_gray_right.svg"
-      text="댓글더보기"
-      style="color: #666666; flex-direction: row-reverse; gap: 4px; margin-top: 12px;"
-      imgFull={false}
-    />
+    <div class="best-comments-container" bind:this={bestCommentContainerRef}>
+      <BestComment type={voteType.AGREE} data={agree.bestComment || null} />
+      <BestComment type={voteType.DISAGREE} data={disagree.bestComment || null} />
+      <Button
+        src="/images/icon/icn_next_gray_right.svg"
+        text="댓글더보기"
+        style="color: #666666; flex-direction: row-reverse; gap: 4px; margin-top: 12px;"
+        imgFull={false}
+      />
+    </div>
   </div>
 </div>
 
 <style lang="postcss">
+  .vote-contents-wrapper {
+    @apply flex flex-col items-start h-[200vh] pb-2 transition-all duration-[1000ms] gap-[100vh];
+  }
+  .vote-contents-wrapper.change-start {
+    @apply gap-2
+  }
   .vote-title {
     @apply w-full h-[96px] text-2xl text-white mb-[21px] duration-[1000ms] overflow-hidden;
   }
@@ -245,6 +273,6 @@
     @apply text-[18px] leading-[28px] font-medium;
   }
   .best-comments-container {
-    @apply mt-4 w-full flex flex-col justify-center items-center bg-white rounded-[10px] p-4;
+    @apply flex mt-4 w-full flex-col justify-center items-center bg-white rounded-[10px] p-4;
   }
 </style>
