@@ -3,7 +3,7 @@
   import {voteSubjectStore} from '@/store/voteSubjectStore';
   import Countup from 'svelte-countup';
   import {bounceOut} from 'svelte/easing';
-  import BestComment from '@/components/vote/BestComment.svelte';
+  import BestComment from '@/components/Vote/BestComment.svelte';
   import Button from '@/components/common/button/Button.svelte';
 
   /** 투표하기 */
