@@ -1,6 +1,6 @@
 <script lang="ts">
   import {onMount} from 'svelte';
-  import {voteSubjectStore} from '@/store/voteSubjectStore';
+  import {voteSubjectStore} from '$store/voteSubjectStore';
 
   onMount(async () => {
     await voteSubjectStore.fetchVoteSubjects();

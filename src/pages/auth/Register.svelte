@@ -5,7 +5,7 @@
     checkPassword,
     checkConfirmPassword,
     viewPassword
-  } from '@/utils/Auth';
+  } from '$utils/Auth';
 
   let email: AuthModule.Iinput = {value: '', ref: null};
   let password: AuthModule.Iinput = {value: '', ref: null};
